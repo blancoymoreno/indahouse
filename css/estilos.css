@@ -1,0 +1,121 @@
+nav img {
+    max-width: 170px;
+    margin: 0 15px;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: rgb(88, 88, 88);
+    background-color: white;
+}
+.nav-pills>li>a, .nav-pills>li>a:focus, .nav-pills>li>a:hover {
+    color: rgb(88, 88, 88);
+    background-color: white;
+}
+.buscador .nav-tabs li {
+    width: 50%;
+}
+.capsula-servicio {
+    padding: 2px;
+    box-shadow: 0px 0px 6px #808080b5;
+    margin-bottom: 20px;
+}
+.capsula-servicio .imagen {
+    height: 200px;
+    background: gray;
+    overflow: hidden;
+    width: auto;
+}
+.titulo-capsula-servicio {
+    padding: 0 10px;
+}
+.buscador .nav-tabs{
+    display: flex;
+    text-align: center;
+}
+.nav-tabs .pestana-buscador a {
+    flex: 1;
+    height: 100%;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #85d8ae;
+    border: none;
+    border-bottom-color: transparent;
+}
+.nav-tabs>li>a {
+    border: none;
+    border-radius: 0;
+}
+
+.buscador .tab-content {
+    padding: 50px 0;
+}
+@media (min-width: 1200px){
+    .buscador .tab-content {
+        padding: 70px 0;
+    }
+}
+.imagen-cabecera {
+    background: gray;
+}
+.usuario-menu {
+    display: inline;
+}
+.solicitudes-icon, .mensajes-icon {
+    height: 15px;
+    width: 15px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 6px;
+    right: 0;
+    padding: 2px;
+    text-align: center;
+    font-size: 9px;
+    color: white;
+}
+.imagen-perfil-menu img {
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+}
+.activo {
+    display: block!important;
+}
+.oculto {
+    display: none;
+}
+.input-group.select-group  .input-group-addon.select {
+    width: 40%;
+}
+.input-group.select-group input {
+    width: 60%;
+}
+#foto-de-perfil .imagen-perfil img {
+    background: gray;
+    display: block;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+}
+.foto-evaluacion img {
+    border-radius: 50%;
+    background: #717171;
+    height: 90px;
+    width: 90px;
+    display: block;
+}
+.evaluacion-box {
+    background: #ebebeb;
+    padding: 10px;
+    margin: 5px 0;
+}
+.mensaje.col-xs-12 {
+    width: 80%;
+    padding: 0 15px;
+}
+.capsula-servicio-detalle {
+    height: 200px;
+    border: 1px solid gray;
+    display: block;
+}
