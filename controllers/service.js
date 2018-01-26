@@ -2,7 +2,7 @@
 
 var path = require('path');
 var fs = require('fs');
-
+var mongoosePaginate = require('mongoose-pagination');
 var Service = require('../models/service');
 var Category = require('../models/category');
 
@@ -22,7 +22,30 @@ function getService(req, res){
     })
     
 }
+function getAllServices(req, res){
+    if(req.params.page){
+        var page = req.params.page;
+    }else{
+        var page = 1;
+    }
+    
+    var itemsPerPage = 3;
 
+    Service.find().sort('name').paginate(page, itemsPerPage, function(err, services, total){
+        if(err){
+            res.status(500).send({message: 'Error en la petición.'});
+        }else{
+            if(!services){
+                res.status(404).send({message: 'No hay servicios'});
+            }else{
+                return res.status(200).send({
+                    total_items: total,
+                    services: services
+                });
+            } 
+        }
+    })
+}
 function saveService(req, res){
     var service = new Service();
 
@@ -46,5 +69,6 @@ function saveService(req, res){
 
 module.exports = {
     getService,
-    saveService
+    saveService,
+    getAllServices
 };
