@@ -66,9 +66,26 @@ function saveService(req, res){
         }
     });
 }
+function updateService(req, res){
+    var serviceId = req.params.id;
+    var update = req.body;
+
+    Service.findByIdAndUpdate(serviceId, update, (err, serviceUpdated) => {
+        if(err){
+            res.status(500).send({message: 'Error al guardar el servicio'});
+        }else{
+            if(!serviceUpdated){
+                res.status(404).send({message: 'El artista no ha sido actualizado'});
+            }else{
+                res.status(200).send({service: serviceUpdated});
+            }
+        }
+    });
+}
 
 module.exports = {
     getService,
     saveService,
-    getAllServices
+    getAllServices,
+    updateService
 };
