@@ -5,7 +5,6 @@ var Schema = mongoose.Schema;
 var ServiceSchema = Schema({
     name: String,
     description: String,
-    provider: {type: Schema.ObjectId, ref: 'user'},
     image: String
 });
 

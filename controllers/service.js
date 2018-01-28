@@ -83,9 +83,49 @@ function updateService(req, res){
     });
 }
 
+function deleteService(req, res){
+    var serviceId = req.params.id;
+
+    Service.findByIdAndRemove(serviceId, (err, serviceRemoved) => {
+        if(err){
+            res.status(500).send({message: 'Error al eliminar el servicio'});
+        }else{
+            if(!serviceRemoved){
+                res.status(404).send({message: 'El servicio no ha sido eliminado'}); 
+            }else{
+                res.status(200).send({serviceRemoved});
+                //aquí comienza la eliminacion de los elementos asociados al servicio removido
+               /* Category.find({service: serviceRemoved._id}).remove((err, categoryRemoved) => {
+                    if(err){
+                        res.status(500).send({message: 'Error al eliminar el elemento asociado'});
+                    }else{
+                        if(!categoryRemoved){
+                            res.status(404).send({message: 'El elemento asociado no ha sido eliminado'}); 
+                        }else{
+                            Comentario.find({category: categoryRemoved._id}).remove((err, comentarioRemoved) => {
+                                if(err){
+                                    res.status(500).send({message: 'Error al eliminar el elemento hijo asociado'});
+                                }else{
+                                    if(!comentarioRemoved){
+                                        res.status(404).send({message: 'El elemento hijo asociado no ha sido eliminado'}); 
+                                    }else{
+                                        res.status(200).send({service: serviceRemoved}); 
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });*/
+            }
+        }
+    });
+}
+
+
 module.exports = {
     getService,
     saveService,
     getAllServices,
-    updateService
+    updateService,
+    deleteService
 };
