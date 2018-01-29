@@ -7,7 +7,19 @@ var Service = require('../models/service');
 var Category = require('../models/category');
 
 function getCategory(req, res){
-    res.status(200).send({message: 'Acción get category'});
+    var categoryId = req.params.id;
+
+    Category.findById(categoryId).populate({path: 'service'}).exec((err, category)=>{
+        if(err){
+            res.status(500).send({message: 'Error en la peticion'});
+        }else{
+            if(!category){
+                res.status(404).send({message: 'La categoria no existe'});
+            }else{
+                res.status(200).send({category});
+            }
+        }
+    });
     
 }
 
