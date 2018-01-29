@@ -10,7 +10,8 @@ var UserSchema = Schema({
     role: String,
     image: String,
     valoracionPromedio: Number,
-    valoraciones: [ ]
+    valoraciones: [ ],
+    idService: String
 });
 
 module.exports = mongoose.model('User', UserSchema);

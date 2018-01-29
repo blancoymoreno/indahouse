@@ -7,7 +7,6 @@ function create(req, res){
     let valoracion = new Valoracion(req.body);
 
     valoracion.save((err, valoracionStored) => {
-        console.log("Enel metodo");
         if(err){
             res.status(500).send({message: 'Error al guardar la valoracion'}); 
         }else{
