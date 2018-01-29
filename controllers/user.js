@@ -138,11 +138,27 @@ function getImageFile(req, res){
     })
 }
 
+function setValoraciones(valoracion) {
+
+    User.update( { $push: { valoraciones: valoracion } }, (err, userUpdated) => {
+        if (err) {
+            console.log('Error al guardar valoracion '+err );
+        } else {
+            if (!userUpdated) {
+                console.log('Valoraciones no han sido actualizadas');
+            } else {
+                console.log({ user: userUpdated });
+            }
+        }
+    });
+}
+
 module.exports = {
     pruebas,
     saveUser,
     loginUser,
     updateUser,
     uploadImage,
-    getImageFile
+    getImageFile,
+    setValoraciones
 };
