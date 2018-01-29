@@ -36,9 +36,10 @@ function findById(req,res){
     });
 }
 
-//Buscar por usuario
-function findAllByUser(req,res){
-    Valoracion.find({"idUsuario":req.params.idUsuario},(err,valoraciones) => {
+//Buscar por proveedor
+function findAllByProvider(req,res){
+    const idProvider = req.params.id;
+    Valoracion.find({"idProvider":idProvider},(err,valoraciones) => {
         if (err) {
             res.status(500).send(err)
         } else {
@@ -61,6 +62,6 @@ function findAll(req,res){
 module.exports = {
     findById,
     create,
-    findAllByUser,
+    findAllByProvider,
     findAll
 };
