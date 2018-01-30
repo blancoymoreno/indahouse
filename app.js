@@ -7,6 +7,7 @@ var app = express();
 var user_routes = require('./routes/user');
 var service_routes = require('./routes/service');
 var category_routes = require('./routes/category');
+var valoracion_routes = require('./routes/valoracion');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
@@ -17,5 +18,6 @@ app.use(bodyParser.json());
 app.use('/api', user_routes);
 app.use('/api', service_routes);
 app.use('/api', category_routes);
+app.use('/api', valoracion_routes);
 
 module.exports = app;
