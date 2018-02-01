@@ -3,9 +3,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ServiceSchema = Schema({
-    name: String,
+    title: String,
     description: String,
-    image: String
+    year: Number,
+    image: String,
+    category: {type: Schema.ObjectId, ref: 'Category'}
 });
 
 module.exports = mongoose.model('Service', ServiceSchema);
