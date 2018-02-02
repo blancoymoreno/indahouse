@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ValoracionesService} from '../../services/valoraciones.service';
-import { Valoracion } from '../../Valoracion';
+import {ValoracionesService} from '../../../services/valoraciones.service';
+import { Valoracion } from '../../../Valoracion';
 
 @Component({
   selector: 'app-valoraciones',
