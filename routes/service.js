@@ -11,5 +11,6 @@ var md_upload = multipart({ uploadDir: './uploads/service' });
 api.get('/service/:id', md_auth.ensureAuth, ServiceController.getService);
 api.post('/service', md_auth.ensureAuth, ServiceController.saveService);
 api.get('/services/:category?', md_auth.ensureAuth, ServiceController.getServices);
+api.put('/service/:id', md_auth.ensureAuth, ServiceController.updateService);
 
 module.exports = api;
