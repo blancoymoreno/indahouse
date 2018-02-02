@@ -1,4 +1,5 @@
 'use strict'
+const cors = require('cors');
 var express = require('express');
 var bodyParser = require('body-parser');
 const path = require('path');
@@ -12,6 +13,7 @@ var valoracion_routes = require('./src/routes/valoracion');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(cors());
 
 // configurar engine views
 app.use(express.static(path.join(__dirname,'dist')));

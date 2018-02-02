@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ValoracionesService} from '../../services/valoraciones.service';
+import { Valoracion } from '../../Valoracion';
 
 @Component({
   selector: 'app-valoraciones',
@@ -7,7 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ValoracionesComponent implements OnInit {
 
-  constructor() { }
+  valoraciones: Valoracion[];
+
+  constructor(private valoracionService: ValoracionesService) {
+    console.log('shsjs');
+    this.valoracionService.getValoraciones()
+      .subscribe(
+        (valoraciones) => {
+          this.valoraciones = valoraciones;
+        },
+        (error) => {
+          console.log(error);
+        }
+    );
+  }
 
   ngOnInit() {
   }

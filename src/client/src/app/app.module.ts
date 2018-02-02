@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import {ValoracionesService} from './services/valoraciones.service';
 
@@ -15,7 +16,8 @@ import {ServicesService} from './services/services.service';
     ValoracionesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [
     ValoracionesService,
