@@ -3,20 +3,25 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { routing, appRoutingProviders } from './app.routing';
 
-import {ValoracionesService} from './services/valoraciones.service';
+import {ValoracionesService} from './shared/services/valoraciones.service';
 
 import { AppComponent } from './app.component';
-import { ServicesComponent } from './components/services/services.component';
-import { ValoracionesComponent } from './components/servicios/valoraciones/valoraciones.component';
-import {ServicesService} from './services/services.service';
-import { NavComponent } from './components/servicios/nav/nav.component';
+// import { ServicesComponent } from './servicio/';
+import { ValoracionesComponent } from './valoracion/valoraciones.component';
+import {ServicesService} from './shared/services/services.service';
+import {UserService} from './shared/services/user.service';
+import { NavComponent } from './shared/layout/nav.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { EvaluarComponent } from './valoracion/evaluar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ServicesComponent,
+    // ServicesComponent,
     ValoracionesComponent,
-    NavComponent
+    NavComponent,
+    PerfilComponent,
+    EvaluarComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +31,8 @@ import { NavComponent } from './components/servicios/nav/nav.component';
   providers: [
     ValoracionesService,
     ServicesService,
-    appRoutingProviders
+    appRoutingProviders,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

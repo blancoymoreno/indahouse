@@ -1,4 +1,4 @@
-export class Valoracion {
+export interface Valoracion {
   _id?: string;
   numEvaluacion: number;
   comentario: string;

@@ -2,10 +2,10 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // importar componentes
-import { ValoracionesComponent } from './components/servicios/valoraciones/valoraciones.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const appRoutes: Routes = [
-  {path: 'valoraciones', component: ValoracionesComponent}
+  {path: 'perfil/:idUser', component: PerfilComponent}
 ];
 
 export const appRoutingProviders: any[] = [];

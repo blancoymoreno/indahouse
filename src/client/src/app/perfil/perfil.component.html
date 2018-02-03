@@ -1,0 +1,71 @@
+<section class="row imagen-central">
+    <div class="col-xs-12">
+        <img src="" alt="">
+    </div>
+</section>
+
+<section class="row galeria">
+    <div class="col-xs-12">
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">¿Buscas un servicio?</a>
+                <a href="#">/ Servicios </a>
+                <span>/ Masajes descontracturantes</span>
+            </li>
+        </ul>
+        <h2>Perfil</h2>
+    </div>
+    <div class="col-md-2">
+        <aside class="foto-detalle-usuario">
+            <div class="foto-evaluacion">
+                <img src="" class="rounded" alt="">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>29 años</p>
+                </div>
+                <div class="col-md-12">
+                    <p> Chileno / Soltero</p>
+                </div>
+                <div class="col-md-12">
+                    <p>Vive en Santiago de Chile</p>
+                </div>
+                <div class="col-md-12">
+                    <p>Idiomas: Español, Inglés</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <div class="col-md-10">
+        <article class="evaluacion-box row no-row">
+            <div class="col-md-9">
+                <h5>
+                    <span class="nombre-evaluacion">{{user.name}} {{user.surname}}</span>
+                </h5>
+                <em>Masajes descontracturantes</em>
+                <p>5.000 pesos chilenos / hora</p>
+
+                <p class="contenido-evaluacion">
+                    Me encanta la vida sana, el comer rico y dormir como niño, hago masajes desde los 15 años y ha sido un gran aprendizaje, conozco muchas formas de relajación mediante el uso de mis manos
+                </p>
+            </div>
+            <div class="col-md-3">
+                <h3>Valoración Indahouser</h3>
+                <p>6.8</p>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <a href="#!" data-toggle="modal" data-target="#evaluaciones">10 evaluaciones</a>
+            </div>
+            <div class="pull-right">
+                <!--<button class="btn btn-primary">Solicitar</button>-->
+                <button class="btn btn-secondary" data-toggle="modal" data-target="#mensaje">Enviar mensaje</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#evaluacion">Evaluar</button>
+            </div>
+        </article>
+    </div>
+</section>
+<app-valoraciones></app-valoraciones>
+<app-evaluar></app-evaluar>

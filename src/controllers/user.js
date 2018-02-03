@@ -153,6 +153,20 @@ function setValoraciones(valoracion) {
     });
 }
 
+function getUser(req,res){
+    User.findOne({'_id':req.params.id}, (err,user) =>{
+        if (err) {
+            res.status(500).send(err);
+        }
+        if (user) {
+            res.status(200).send(user);
+        } else {
+            res.status(404).send("No se ha encontrado el user");
+        }
+    });
+}
+
+
 module.exports = {
     pruebas,
     saveUser,
@@ -160,5 +174,6 @@ module.exports = {
     updateUser,
     uploadImage,
     getImageFile,
-    setValoraciones
+    setValoraciones,
+    getUser
 };

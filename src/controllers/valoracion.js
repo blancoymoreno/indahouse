@@ -1,6 +1,7 @@
 'use strict'
 var Valoracion = require('../models/valoracion');
 var UserController = require('../controllers/user');
+var User = require('../models/user');
 
 //Agregar Valoracion
 function create(req, res){
@@ -39,11 +40,12 @@ function findById(req,res){
 //Buscar por proveedor
 function findAllByProvider(req,res){
     const idProvider = req.params.id;
+
     Valoracion.find({"idProvider":idProvider},(err,valoraciones) => {
         if (err) {
             res.status(500).send(err)
         } else {
-            res.status(200).send({valoraciones: valoraciones});
+            res.status(200).send(valoraciones);
         }
     });
 }
