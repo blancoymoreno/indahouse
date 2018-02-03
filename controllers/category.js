@@ -93,11 +93,12 @@ function deleteCategory(req, res){
             if(!categoryRemoved){
                 res.status(404).send({message: 'El servicio no ha sido eliminado'}); 
             }else{
+                //sacar si se descomenta el codigo de abajo
                 res.status(200).send({categoryRemoved});
                 //aquí comienza la eliminacion de los elementos asociados al servicio removido
-               /* Category.find({category: categoryRemoved._id}).remove((err, categoryRemoved) => {
+               /* Service.find({category: categoryRemoved._id}).remove((err, serviceRemoved) => {
                     if(err){
-                        res.status(500).send({message: 'Error al eliminar el elemento asociado'});
+                        res.status(500).send({message: 'Error al eliminar el servicio'});
                     }else{
                         if(!serviceRemoved){
                             res.status(404).send({message: 'El elemento asociado no ha sido eliminado'}); 

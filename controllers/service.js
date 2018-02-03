@@ -87,9 +87,25 @@ function updateService(req, res){
         }
     });
 }
+function deleteService(req, res){
+    var serviceId = req.params.id;
+              
+    Service.findByIdAndRemove(serviceId, (err, serviceRemoved) => {
+        if(err){
+            res.status(500).send({message: 'Error al eliminar el servicio'});
+        }else{
+            if(!serviceRemoved){
+                res.status(404).send({message: 'El elemento asociado no ha sido eliminado'}); 
+            }else{
+                res.status(200).send({service: serviceRemoved}); 
+            }
+        }
+    });
+}
 module.exports = {
     getService,
     saveService,
     getServices,
-    updateService
+    updateService,
+    deleteService
 }
