@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/Rx';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, retry } from 'rxjs/operators';
@@ -15,8 +15,10 @@ export class ValoracionesService {
     return this.http.get<any[]>(`${this.domain}/api/valoraciones/${idProvider}`).map(res => res);
   }
 
-  addValoracion(valoracion) {
-    return this.http.post<Valoracion>(`${this.domain}/api/create-valoracion`, valoracion).map(res => res);
+  addValoracion(valoracion: Valoracion) {
+    return this.http.post<Valoracion>(`${this.domain}/api/create-valoracion`, valoracion).map(res => {
+      return res;
+    });
   }
 
 }

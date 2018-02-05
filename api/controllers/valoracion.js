@@ -6,7 +6,7 @@ var User = require('../models/user');
 //Agregar Valoracion
 function create(req, res){
     let valoracion = new Valoracion(req.body);
-
+    console.log(valoracion);
     valoracion.save((err, valoracionStored) => {
         if(err){
             res.status(500).send({message: 'Error al guardar la valoracion'}); 

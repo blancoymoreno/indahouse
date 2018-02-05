@@ -3,11 +3,10 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { routing, appRoutingProviders } from './app.routing';
 
-import {ValoracionesService} from './shared/services/valoraciones.service';
+import { FormsModule } from '@angular/forms';
 
+import {ValoracionesService} from './shared/services/valoraciones.service';
 import { AppComponent } from './app.component';
-// import { ServicesComponent } from './servicio/';
-import {ServicesService} from './shared/services/services.service';
 import {UserService} from './shared/services/user.service';
 import { NavComponent } from './shared/layout/nav.component';
 import { PerfilComponent } from './perfil/perfil.component';
@@ -16,7 +15,6 @@ import { EvaluarComponent } from './valoracion/evaluar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    // ServicesComponent,
     NavComponent,
     PerfilComponent,
     EvaluarComponent
@@ -24,11 +22,11 @@ import { EvaluarComponent } from './valoracion/evaluar.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    routing
+    routing,
+    FormsModule
   ],
   providers: [
     ValoracionesService,
-    ServicesService,
     appRoutingProviders,
     UserService
   ],

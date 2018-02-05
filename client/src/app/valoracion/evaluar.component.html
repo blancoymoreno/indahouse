@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <form class="col-xs-12" (submit)="addValoracion($event)">
+                    <form class="col-xs-12">
                         <div class="form-group">
                             <label>Nota (1/7): </label>
                             <div id="notas">
@@ -22,18 +22,18 @@
                                 <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,6)" (mouseenter)="mouseEnterStar($event,6)"></span>
                                 <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,7)" (mouseenter)="mouseEnterStar($event,7)"></span>
                             </div>
-                            <input type="hidden" value="" name="numEvaluacion" [( ngModel )]="valoracion.numEvaluacion">
+                            <input type="hidden" value="" name="numEvaluacion" [(ngModel)]="valoracion.numEvaluacion">
                         </div>
                         <div class="form-group">
                             <label for="textoevaluacion">Comentario:</label>
-                            <textarea name="comentario" [( ngModel )]="valoracion.comentario" id="textoevaluacion" cols="30" rows="5" class="form-control"></textarea>
+                            <textarea name="comentario" [(ngModel)]="valoracion.comentario" id="textoevaluacion" cols="30" rows="5" class="form-control"></textarea>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="addValoracion($event)">Enviar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="addValoracion($event)">Enviar</button>
             </div>
         </div>
     </div>

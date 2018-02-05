@@ -10,7 +10,9 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUser(idUser) {
-    return this.http.get<User[]>(`${this.domain}/api/user/${idUser}`).map(res => res);
+    return this.http.get<User>(`${this.domain}/api/user/${idUser}`).map(res => {
+      return res;
+    });
   }
 
 }

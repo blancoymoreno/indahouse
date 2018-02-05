@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-3">
                 <h3>Valoración Indahouser</h3>
-                <div *ngIf="user.valoraciones.length > 0">
+                <div *ngIf="user.valoraciones?.length > 0">
                     <p>{{user.valoracionPromedio}}</p>
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star"></span>
@@ -111,4 +111,4 @@
         </div>
     </div>
 </section>
-<app-evaluar></app-evaluar>
+<app-evaluar [user]="user"></app-evaluar>
