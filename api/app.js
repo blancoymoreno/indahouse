@@ -6,10 +6,10 @@ const path = require('path');
 
 var app = express();
 // cargar rutas
-var user_routes = require('./src/routes/user');
-var category_routes = require('./src/routes/category');
-var service_routes = require('./src/routes/service');
-var valoracion_routes = require('./src/routes/valoracion');
+var user_routes = require('./routes/user');
+var category_routes = require('./routes/category');
+var service_routes = require('./routes/service');
+var valoracion_routes = require('./routes/valoracion');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
