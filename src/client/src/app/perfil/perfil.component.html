@@ -51,13 +51,19 @@
             </div>
             <div class="col-md-3">
                 <h3>Valoración Indahouser</h3>
-                <p>6.8</p>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <a href="#!" data-toggle="modal" data-target="#evaluaciones">10 evaluaciones</a>
+                <div *ngIf="user.valoraciones.length > 0">
+                    <p>{{user.valoracionPromedio}}</p>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+                    <span class="glyphicon glyphicon-star"></span>
+
+                    <a href="#!" data-toggle="modal" data-target="#evaluaciones">{{user.valoraciones.length}} evaluaciones</a>
+                </div>
+                <div *ngIf="user.valoraciones.length == 0">
+                    <p>No existen valoraciones</p>
+                </div>
             </div>
             <div class="pull-right">
                 <!--<button class="btn btn-primary">Solicitar</button>-->
@@ -67,5 +73,42 @@
         </article>
     </div>
 </section>
-<app-valoraciones></app-valoraciones>
+<section *ngIf="user.valoraciones.length > 0">
+    <!-- Modal -->
+    <div class="modal fade" id="evaluaciones" tabindex="-1" role="dialog" aria-labelledby="evaluacionesLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                    <h4 class="modal-title" id="evaluacionesLabel">Valoración {{user.name}} {{user.surname}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div *ngFor="let valoracion of user.valoraciones" class="w-100 d-flex evaluaciones p-3 mb-3">
+                        <div class="d-flex flex-column w-75 pr-3">
+                            <p class="m-0">
+                                <strong>Usuario :</strong> {{valoracion.user.name}} {{valoracion.user.surname}}</p>
+                            <p class="m-0">
+                                <strong>Comentario:</strong> {{valoracion.comentario}}</p>
+                        </div>
+                        <div class="w-25 p-2 d-flex flex-column justify-content-center bg-warning align-items-center rounded">
+                            <h5 class="m-0">Calificación:</h5>
+                            <div class="d-flex align-items-center">
+                                <div *ngFor="let nota of cantNotas; let i = index">
+                                    <span *ngIf="i < valoracion.numEvaluacion" class="glyphicon glyphicon-star nota"></span>
+                                    <span *ngIf="i > valoracion.numEvaluacion" class="glyphicon glyphicon-star-empty nota"></span>
+                                </div>
+                                <h4 class="m-0 pl-3 mt-2">{{valoracion.numEvaluacion}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <app-evaluar></app-evaluar>

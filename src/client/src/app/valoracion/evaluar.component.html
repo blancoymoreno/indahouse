@@ -10,29 +10,30 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <form class="col-xs-12" (submit)="addValoracion($event)">
                         <div class="form-group">
-                            <label>Nota (1/7):</label>
+                            <label>Nota (1/7): </label>
                             <div id="notas">
-                                <span class="glyphicon glyphicon-star cursor-pointer nota" data-star="1"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" data-star="2"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" data-star="3"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" data-star="4"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" data-star="5"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" data-star="6"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" data-star="7"></span>
+                                <span class="glyphicon glyphicon-star cursor-pointer nota" (mouseleave)="mouseOverStar($event,1)" (mouseenter)="mouseEnterStar($event,1)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,2)" (mouseenter)="mouseEnterStar($event,2)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,3)" (mouseenter)="mouseEnterStar($event,3)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,4)" (mouseenter)="mouseEnterStar($event,4)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,5)" (mouseenter)="mouseEnterStar($event,5)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,6)" (mouseenter)="mouseEnterStar($event,6)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,7)" (mouseenter)="mouseEnterStar($event,7)"></span>
                             </div>
+                            <input type="hidden" value="" name="numEvaluacion" [( ngModel )]="valoracion.numEvaluacion">
                         </div>
                         <div class="form-group">
                             <label for="textoevaluacion">Comentario:</label>
-                            <textarea name="" id="textoevaluacion" cols="30" rows="5" class="form-control"></textarea>
+                            <textarea name="comentario" [( ngModel )]="valoracion.comentario" id="textoevaluacion" cols="30" rows="5" class="form-control"></textarea>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="valorar(this)">Enviar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="addValoracion($event)">Enviar</button>
             </div>
         </div>
     </div>

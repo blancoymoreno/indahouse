@@ -7,7 +7,6 @@ import {ValoracionesService} from './shared/services/valoraciones.service';
 
 import { AppComponent } from './app.component';
 // import { ServicesComponent } from './servicio/';
-import { ValoracionesComponent } from './valoracion/valoraciones.component';
 import {ServicesService} from './shared/services/services.service';
 import {UserService} from './shared/services/user.service';
 import { NavComponent } from './shared/layout/nav.component';
@@ -18,7 +17,6 @@ import { EvaluarComponent } from './valoracion/evaluar.component';
   declarations: [
     AppComponent,
     // ServicesComponent,
-    ValoracionesComponent,
     NavComponent,
     PerfilComponent,
     EvaluarComponent

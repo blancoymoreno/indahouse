@@ -20,7 +20,7 @@ function create(req, res){
     });
 
     //Update a usuario
-    UserController.setValoraciones(valoracion);
+    UserController.setValoraciones(valoracion, req.idProvider,req.valoracionPromedio);
 }
 
 //Buscar por id

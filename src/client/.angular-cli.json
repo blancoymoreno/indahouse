@@ -21,7 +21,9 @@
             "./assets/css/estilos.css",
             "../node_modules/bootstrap/dist/css/bootstrap.min.css"
         ],
-        "scripts": [],
+        "scripts": [
+            "./assets/js/evaluar.js"
+        ],
         "environmentSource": "environments/environment.ts",
         "environments": {
             "dev": "environments/environment.ts",

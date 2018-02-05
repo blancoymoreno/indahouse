@@ -1,7 +1,6 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// importar componentes
 import { PerfilComponent } from './perfil/perfil.component';
 
 const appRoutes: Routes = [
