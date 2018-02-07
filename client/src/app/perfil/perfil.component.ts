@@ -9,8 +9,8 @@ import { User } from '../shared/models/User';
 })
 export class PerfilComponent implements OnInit {
 
-  user: User;
-  idUser: String;
+  public user: User;
+  idUser: string;
   cantNotas = [{}, {}, {}, {}, {}, {}, {}, {}];
 
   constructor(
@@ -53,7 +53,8 @@ export class PerfilComponent implements OnInit {
 
     this.userService.getUser(this.idUser).subscribe(
       (userData) => {
-        this.user = userData;
+          console.log('Desde Perfil Component: ', userData);
+          this.user = userData;
       },
       (error) => {
         console.log(error);
