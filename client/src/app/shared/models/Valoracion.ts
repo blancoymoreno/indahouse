@@ -2,9 +2,10 @@ export interface Valoracion {
   _id?: string;
   numEvaluacion: number;
   comentario: string;
-  idProvider: string;
-  valoracionPromedio: Number;
+  idUserValorado: string;
+  valoracionPromedio: number;
   user: {
+    _id?: string;
     name: String;
     surname: String;
     email: String;

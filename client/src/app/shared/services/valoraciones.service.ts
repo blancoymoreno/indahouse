@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-import {Valoracion} from '../models/Valoracion';
+import { Valoracion } from '../models/Valoracion';
 
 @Injectable()
 export class ValoracionesService {
@@ -16,10 +16,9 @@ export class ValoracionesService {
 
   addValoracion(valoracion: Valoracion): Observable<any> {
     const json = JSON.stringify(valoracion);
-    const params = 'json=' + json;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.post(`${this.domain}/api/create-valoracion`, params, {headers: headers});
-}
+    return this.http.post(`${this.domain}/api/create-valoracion`, json, { headers: headers }).map(res => res);
+  }
 
 }

@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                <h4 class="modal-title" id="evaluacionLabel">Evaluar (idServicio): {{user.name}}</h4>
+                <h4 class="modal-title" id="evaluacionLabel">Evaluar (idServicio): {{proveedor.name}}</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -14,13 +14,13 @@
                         <div class="form-group">
                             <label>Nota (1/7): </label>
                             <div id="notas">
-                                <span class="glyphicon glyphicon-star cursor-pointer nota" (mouseleave)="mouseOverStar($event,1)" (mouseenter)="mouseEnterStar($event,1)"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,2)" (mouseenter)="mouseEnterStar($event,2)"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,3)" (mouseenter)="mouseEnterStar($event,3)"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,4)" (mouseenter)="mouseEnterStar($event,4)"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,5)" (mouseenter)="mouseEnterStar($event,5)"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,6)" (mouseenter)="mouseEnterStar($event,6)"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseOverStar($event,7)" (mouseenter)="mouseEnterStar($event,7)"></span>
+                                <span class="glyphicon glyphicon-star cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,1)" (mouseenter)="mouseEnterStar($event,1)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,2)" (mouseenter)="mouseEnterStar($event,2)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,3)" (mouseenter)="mouseEnterStar($event,3)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,4)" (mouseenter)="mouseEnterStar($event,4)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,5)" (mouseenter)="mouseEnterStar($event,5)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,6)" (mouseenter)="mouseEnterStar($event,6)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,7)" (mouseenter)="mouseEnterStar($event,7)"></span>
                             </div>
                             <input type="hidden" value="" name="numEvaluacion" [(ngModel)]="valoracion.numEvaluacion">
                         </div>

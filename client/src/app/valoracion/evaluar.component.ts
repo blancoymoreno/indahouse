@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Valoracion } from '../shared/models/Valoracion';
 import { ValoracionesService } from '../shared/services/valoraciones.service';
 
@@ -6,11 +6,11 @@ import { ValoracionesService } from '../shared/services/valoraciones.service';
   selector: 'app-evaluar',
   templateUrl: './evaluar.component.html'
 })
-export class EvaluarComponent implements OnInit {
+export class EvaluarComponent implements OnInit, OnChanges {
 
   valoracion: Valoracion;
   title: String = 'Holanda, que talca';
-  @Input() user: any;
+  @Input() proveedor: any;
 
   constructor(
     private valoracionService: ValoracionesService,
@@ -20,7 +20,7 @@ export class EvaluarComponent implements OnInit {
     this.valoracion = {
       numEvaluacion: 0,
       comentario: '',
-      idProvider: '',
+      idUserValorado: '',
       valoracionPromedio: 0,
       user: {
         name: '',
@@ -50,7 +50,7 @@ export class EvaluarComponent implements OnInit {
     }
   }
 
-  mouseOverStar(event, num) {
+  mouseLeaveStar(event, num) {
     const numNota = num;
     const clase = event.target.className;
     if (clase.indexOf('glyphicon-star') >= 0) {
@@ -67,10 +67,23 @@ export class EvaluarComponent implements OnInit {
     }
   }
 
+  getPromedioValoracion() {
+    let promedio = 0;
+    const numValoraciones = this.proveedor.valoraciones;
+    numValoraciones.push(this.valoracion);
+    let i = 0;
+    for (const valoracion of numValoraciones) {
+      promedio = promedio + valoracion.numEvaluacion;
+      i++;
+    }
+    promedio = (promedio / i);
+    this.valoracion.valoracionPromedio = promedio;
+  }
+
   addValoracion(event) {
-    console.log(this.valoracion);
+    this.getPromedioValoracion();
     this.valoracionService.addValoracion(this.valoracion).subscribe(res => {
-      console.log('Se ha agregado');
+      console.log('Se ha agregado ', res);
     },
     err => {
       console.log('Error: ', err);
@@ -78,7 +91,10 @@ export class EvaluarComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('Usuario: ', this.user);
+  }
+
+  ngOnChanges() {
+    this.valoracion.idUserValorado = this.proveedor._id;
   }
 
 }

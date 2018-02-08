@@ -9,7 +9,7 @@ import { User } from '../shared/models/User';
 })
 export class PerfilComponent implements OnInit {
 
-  public user: User;
+  public proveedor: User;
   idUser: string;
   cantNotas = [{}, {}, {}, {}, {}, {}, {}, {}];
 
@@ -19,7 +19,7 @@ export class PerfilComponent implements OnInit {
   ) {
 
     // inicializar User
-    this.user = {
+    this.proveedor = {
       name: '',
       surname: '',
       email: '',
@@ -31,7 +31,6 @@ export class PerfilComponent implements OnInit {
         numEvaluacion: 0,
         comentario: '',
         idProvider: '',
-        valoracionPromedio: 0,
         user: {
           name: '',
           surname: '',
@@ -54,7 +53,7 @@ export class PerfilComponent implements OnInit {
     this.userService.getUser(this.idUser).subscribe(
       (userData) => {
           console.log('Desde Perfil Component: ', userData);
-          this.user = userData;
+          this.proveedor = userData;
       },
       (error) => {
         console.log(error);

@@ -6,7 +6,8 @@ var User = require('./user');
 var ValoracionSchema = Schema({
     numEvaluacion: Number,
     comentario: String,
-    idProvider: String,
+    idUserValorado: String,
+    valoracionPromedio: Number,
     user: Schema({
         name: String,
         surname: String,

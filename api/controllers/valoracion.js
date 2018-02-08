@@ -6,7 +6,6 @@ var User = require('../models/user');
 //Agregar Valoracion
 function create(req, res){
     let valoracion = new Valoracion(req.body);
-    console.log(valoracion);
     valoracion.save((err, valoracionStored) => {
         if(err){
             res.status(500).send({message: 'Error al guardar la valoracion'}); 
@@ -15,12 +14,12 @@ function create(req, res){
                 res.status(404).send({message: 'No se ha registrado la valoracion'});
             }else{
                 res.status(200).send({valoracion : valoracionStored});
+                console.log('Valoracion:',req.body.idUserValorado);
+                console.log('valoracion promedio: ', req.body.valoracionPromedio);
+                UserController.setValoraciones(valoracion, req.body.idUserValorado, req.body.valoracionPromedio);
             }
         }
     });
-
-    //Update a usuario
-    UserController.setValoraciones(valoracion, req.idProvider,req.valoracionPromedio);
 }
 
 //Buscar por id
@@ -39,9 +38,10 @@ function findById(req,res){
 
 //Buscar por proveedor
 function findAllByProvider(req,res){
-    const idProvider = req.params.id;
 
-    Valoracion.find({"idProvider":idProvider},(err,valoraciones) => {
+    const idUserValorado = req.params.id;
+
+    Valoracion.find({"idUserValorado":idUserValorado},(err,valoraciones) => {
         if (err) {
             res.status(500).send(err)
         } else {

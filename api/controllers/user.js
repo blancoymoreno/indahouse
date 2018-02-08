@@ -138,9 +138,8 @@ function getImageFile(req, res){
     })
 }
 
-function setValoraciones(valoracion,idProvider,valoracionPromedio) {
-
-    User.findByIdAndUpdate(idProvider, {$push: { valoraciones: valoracion, valoracionPromedio:valoracionPromedio } }, (err, userUpdated) => {
+function setValoraciones(valoracion,id,valoracionPromedio) {
+    User.findByIdAndUpdate(id, {$push: { valoraciones: valoracion, valoracionPromedio:valoracionPromedio } }, (err, userUpdated) => {
         if (err) {
             console.log('Error al guardar valoracion '+err );
         } else {
