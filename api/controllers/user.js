@@ -23,6 +23,8 @@ function saveUser(req, res){
     user.email = params.email;
     user.role = 'ROLE_USER';
     user.image = 'null';
+    user.valoracionPromedio = params.valoracionPromedio;
+    user.idService = params.idService;
 
     if(params.password){
         //encriptar contraseña
@@ -138,20 +140,6 @@ function getImageFile(req, res){
     })
 }
 
-function setValoraciones(valoracion,id,valoracionPromedio) {
-    User.findByIdAndUpdate(id, {$push: { valoraciones: valoracion, valoracionPromedio:valoracionPromedio } }, (err, userUpdated) => {
-        if (err) {
-            console.log('Error al guardar valoracion '+err );
-        } else {
-            if (!userUpdated) {
-                console.log('Valoraciones no han sido actualizadas');
-            } else {
-                console.log({ user: userUpdated });
-            }
-        }
-    });
-}
-
 function getUser(req,res){
     User.findOne({'_id':req.params.id}, (err,user) =>{
         if (err) {
@@ -173,6 +161,5 @@ module.exports = {
     updateUser,
     uploadImage,
     getImageFile,
-    setValoraciones,
     getUser
 };

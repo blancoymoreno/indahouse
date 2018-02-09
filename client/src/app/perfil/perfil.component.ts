@@ -52,7 +52,6 @@ export class PerfilComponent implements OnInit {
 
     this.userService.getUser(this.idUser).subscribe(
       (userData) => {
-          console.log('Desde Perfil Component: ', userData);
           this.proveedor = userData;
       },
       (error) => {

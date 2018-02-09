@@ -78,6 +78,7 @@ export class EvaluarComponent implements OnInit, OnChanges {
     }
     promedio = (promedio / i);
     this.valoracion.valoracionPromedio = promedio;
+    this.proveedor.valoracionPromedio = promedio;
   }
 
   addValoracion(event) {
