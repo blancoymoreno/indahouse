@@ -12,15 +12,13 @@
                 <div class="row">
                     <form class="col-xs-12">
                         <div class="form-group">
-                            <label>Nota (1/7): </label>
+                            <label>Nota (1/5): </label>
                             <div id="notas">
                                 <span class="glyphicon glyphicon-star cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,1)" (mouseenter)="mouseEnterStar($event,1)"></span>
                                 <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,2)" (mouseenter)="mouseEnterStar($event,2)"></span>
                                 <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,3)" (mouseenter)="mouseEnterStar($event,3)"></span>
                                 <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,4)" (mouseenter)="mouseEnterStar($event,4)"></span>
                                 <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,5)" (mouseenter)="mouseEnterStar($event,5)"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,6)" (mouseenter)="mouseEnterStar($event,6)"></span>
-                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,7)" (mouseenter)="mouseEnterStar($event,7)"></span>
                             </div>
                             <input type="hidden" value="" name="numEvaluacion" [(ngModel)]="valoracion.numEvaluacion">
                         </div>
@@ -38,4 +36,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../js/servicios/evaluar.js"></script>

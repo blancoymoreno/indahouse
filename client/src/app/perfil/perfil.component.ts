@@ -11,7 +11,7 @@ export class PerfilComponent implements OnInit {
 
   public proveedor: User;
   idUser: string;
-  cantNotas = [{}, {}, {}, {}, {}, {}, {}, {}];
+  cantNotas = [{}, {}, {}, {}, {}, {}];
 
   constructor(
     private userService: UserService,
@@ -45,8 +45,7 @@ export class PerfilComponent implements OnInit {
     };
   }
 
-  ngOnInit() {
-
+  getUser() {
     // Traer usuario según params,idUser
     this.idUser = this.route.snapshot.params.idUser;
 
@@ -58,7 +57,11 @@ export class PerfilComponent implements OnInit {
         console.log(error);
       }
     );
-
   }
+
+  ngOnInit() {
+    this.getUser();
+  }
+
 
 }

@@ -81,6 +81,9 @@ export class EvaluarComponent implements OnInit, OnChanges {
   }
 
   addValoracion(event) {
+    if (this.valoracion.numEvaluacion === 0) {
+      this.valoracion.numEvaluacion = 1;
+    }
     this.getPromedioValoracion();
     this.valoracionService.addValoracion(this.valoracion).subscribe(res => {
       console.log('Se ha agregado ', res);
