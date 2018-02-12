@@ -60,7 +60,7 @@
               <span *ngIf="i > proveedor.valoracionPromedio" class="glyphicon glyphicon-star-empty nota"></span>
             </div>
           </div>
-          <a href="#!" data-toggle="modal" data-target="#evaluaciones">{{proveedor.valoraciones.length}} evaluaciones</a>
+          <a href="#!" data-toggle="modal" data-target="#evaluaciones">{{proveedor.valoraciones.length}} valoraciones</a>
         </div>
         <div *ngIf="proveedor.valoraciones.length == 0">
           <p>No existen valoraciones</p>
@@ -69,7 +69,7 @@
       <div class="pull-right">
         <!--<button class="btn btn-primary">Solicitar</button>-->
         <button class="btn btn-secondary" data-toggle="modal" data-target="#mensaje">Enviar mensaje</button>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#evaluacion">Evaluar</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#evaluacion">Valorar</button>
       </div>
     </article>
   </div>
@@ -83,7 +83,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-          <h4 class="modal-title" id="evaluacionesLabel">Valoración {{proveedor.name}} {{proveedor.surname}}</h4>
+          <h4 class="modal-title" id="evaluacionesLabel">Valoraciones {{proveedor.name}} {{proveedor.surname}}</h4>
         </div>
         <div class="modal-body">
           <div *ngFor="let valoracion of proveedor.valoraciones" class="w-100 d-flex evaluaciones p-3 mb-3">

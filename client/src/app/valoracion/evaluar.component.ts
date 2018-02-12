@@ -9,7 +9,6 @@ import { ValoracionesService } from '../shared/services/valoraciones.service';
 export class EvaluarComponent implements OnInit, OnChanges {
 
   valoracion: Valoracion;
-  title: String = 'Holanda, que talca';
   @Input() proveedor: any;
 
   constructor(
@@ -85,10 +84,27 @@ export class EvaluarComponent implements OnInit, OnChanges {
     this.getPromedioValoracion();
     this.valoracionService.addValoracion(this.valoracion).subscribe(res => {
       console.log('Se ha agregado ', res);
+      this.limpiarModalValoracion();
     },
-    err => {
-      console.log('Error: ', err);
-    });
+      err => {
+        console.log('Error: ', err);
+      });
+  }
+
+  limpiarModalValoracion() {
+    const notas: any = document.getElementById('notas').children;
+    let i = 0;
+    for (const nota of notas) {
+      if (i === 0) {
+        nota.classList.add('glyphicon-star');
+      }else {
+        nota.classList.add('glyphicon-star-empty');
+        nota.classList.remove('glyphicon-star');
+      }
+      i++;
+    }
+    const textarea: any = document.getElementById('textoevaluacion');
+    textarea.value = '';
   }
 
   ngOnInit() {
