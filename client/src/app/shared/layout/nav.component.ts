@@ -32,6 +32,9 @@ export class NavComponent implements OnInit {
           alert('El usuario no está correctamente identificado');
         }else{
           // crear elemento en el localstorage para tener al usuario en sesion
+          
+          localStorage.setItem('identity', JSON.stringify(identity));
+          // crear token para enviarselo a cada petición HTTP
           this._userService.signup(this.user, 'true').subscribe(
             response => {
               let token = response.token;
@@ -40,7 +43,8 @@ export class NavComponent implements OnInit {
                alert('El token no se ha generado correctamente');
              }else{
               // crear elemento en el localstorage para tener el token disponible
-                console.log(token);
+              localStorage.setItem('token', token);  
+              console.log(token);
                 console.log(identity);
                 $("#ingresarModal").modal("hide");
              }
@@ -69,7 +73,11 @@ export class NavComponent implements OnInit {
      );
   }
   ngOnInit() {
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
 
+    console.log(this.identity);
+    console.log(this.token);
   }
 
 }
