@@ -12,6 +12,7 @@ import { NavComponent } from './shared/layout/nav.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { EvaluarComponent } from './valoracion/evaluar.component';
 import { HttpModule } from '@angular/http';
+import { LoggedNavComponent } from './logged-nav/logged-nav.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HttpModule } from '@angular/http';
     AppComponent,
     NavComponent,
     PerfilComponent,
-    EvaluarComponent
+    EvaluarComponent,
+    LoggedNavComponent
   ],
   imports: [
     BrowserModule,
