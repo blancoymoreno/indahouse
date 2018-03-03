@@ -70,42 +70,8 @@ function saveService(req, res){
     });
 
 }
-function updateService(req, res){
-    var serviceId = req.params.id;
-    var update = req.body;
-    
-    Service.findByIdAndUpdate(serviceId, update, (err, serviceUpdated) => {
-        if(err){
-            
-            res.status(500).send({message: 'Error en el servidor'});
-        }else{
-            if(!serviceUpdated){
-                res.status(404).send({message: 'No se ha actualizado el servicio, puede que no exista'});
-            }else{
-                res.status(200).send({service: serviceUpdated});
-            }
-        }
-    });
-}
-function deleteService(req, res){
-    var serviceId = req.params.id;
-              
-    Service.findByIdAndRemove(serviceId, (err, serviceRemoved) => {
-        if(err){
-            res.status(500).send({message: 'Error al eliminar el servicio'});
-        }else{
-            if(!serviceRemoved){
-                res.status(404).send({message: 'El elemento asociado no ha sido eliminado'}); 
-            }else{
-                res.status(200).send({service: serviceRemoved}); 
-            }
-        }
-    });
-}
 module.exports = {
     getService,
     saveService,
-    getServices,
-    updateService,
-    deleteService
+    getServices
 }

@@ -1,0 +1,38 @@
+<!-- Modal -->
+<div class="modal fade" id="evaluacion" tabindex="-1" role="dialog" aria-labelledby="evaluacionLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                <h4 class="modal-title" id="evaluacionLabel">Valorar: {{proveedor.name}} {{proveedor.surname}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="col-xs-12">
+                        <div class="form-group">
+                            <label>Nota (1/5): </label>
+                            <div id="notas">
+                                <span class="glyphicon glyphicon-star cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,1)" (mouseenter)="mouseEnterStar($event,1)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,2)" (mouseenter)="mouseEnterStar($event,2)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,3)" (mouseenter)="mouseEnterStar($event,3)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,4)" (mouseenter)="mouseEnterStar($event,4)"></span>
+                                <span class="glyphicon glyphicon-star-empty cursor-pointer nota" (mouseleave)="mouseLeaveStar($event,5)" (mouseenter)="mouseEnterStar($event,5)"></span>
+                            </div>
+                            <input type="hidden" value="" name="numEvaluacion" [(ngModel)]="valoracion.numEvaluacion">
+                        </div>
+                        <div class="form-group">
+                            <label for="textoevaluacion">Comentario:</label>
+                            <textarea name="comentario" [(ngModel)]="valoracion.comentario" id="textoevaluacion" cols="30" rows="5" class="form-control"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="addValoracion($event)">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>

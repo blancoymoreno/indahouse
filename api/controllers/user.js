@@ -23,6 +23,8 @@ function saveUser(req, res){
     user.email = params.email;
     user.role = 'ROLE_USER';
     user.image = 'null';
+    user.valoracionPromedio = params.valoracionPromedio;
+    user.idService = params.idService;
 
     if(params.password){
         //encriptar contraseña
@@ -42,11 +44,11 @@ function saveUser(req, res){
                 }
             });
         }else{
-            res.status(200).send({message: 'rellena todos los campos'});
+            res.status(200).send({message: 'Rellena todos los campos'});
         }
         });
     }else{
-        res.status(200).send({message: 'introduce la contraseña'});
+        res.status(200).send({message: 'Introduce la contraseña'});
     }
 }
 function loginUser(req, res){
@@ -75,7 +77,7 @@ function loginUser(req, res){
                             res.status(200).send({user});
                         }
                     }else{
-                        res.status(404).send({message: 'No se ha podido logear'});
+                        res.status(404).send({message: 'No se ha podido logear, compruebe que su contraseña sea correcta.'});
                     }
                 });
             }
@@ -115,7 +117,7 @@ function uploadImage(req, res){
                 if(!userUpdated){
                     res.status(404).send({message: 'No se ha podido actualizar el usuario'});
                 }else{
-                    res.status(200).send({image: file_name, user: userUpdated});
+                    res.status(200).send({user: userUpdated});
                 }
             });
         }else{
@@ -138,20 +140,19 @@ function getImageFile(req, res){
     })
 }
 
-function setValoraciones(valoracion) {
-
-    User.update( { $push: { valoraciones: valoracion } }, (err, userUpdated) => {
+function getUser(req,res){
+    User.findOne({'_id':req.params.id}, (err,user) =>{
         if (err) {
-            console.log('Error al guardar valoracion '+err );
+            res.status(500).send(err);
+        }
+        if (user) {
+            res.status(200).send(user);
         } else {
-            if (!userUpdated) {
-                console.log('Valoraciones no han sido actualizadas');
-            } else {
-                console.log({ user: userUpdated });
-            }
+            res.status(404).send("No se ha encontrado el user");
         }
     });
 }
+
 
 module.exports = {
     pruebas,
@@ -160,5 +161,5 @@ module.exports = {
     updateUser,
     uploadImage,
     getImageFile,
-    setValoraciones
+    getUser
 };
