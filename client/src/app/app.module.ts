@@ -8,20 +8,20 @@ import { FormsModule } from '@angular/forms';
 import {ValoracionesService} from './shared/services/valoraciones.service';
 import { AppComponent } from './app.component';
 import {UserService} from './shared/services/user.service';
-import { NavComponent } from './shared/layout/nav.component';
+//import { NavComponent } from './shared/layout/nav.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { EvaluarComponent } from './valoracion/evaluar.component';
 import { HttpModule } from '@angular/http';
-import { LoggedNavComponent } from './logged-nav/logged-nav.component';
+//import { LoggedNavComponent } from './logged-nav/logged-nav.component';
+import { UserEditComponent } from './components/user-edit.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
     PerfilComponent,
     EvaluarComponent,
-    LoggedNavComponent
+    UserEditComponent
   ],
   imports: [
     BrowserModule,

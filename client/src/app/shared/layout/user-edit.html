@@ -1,0 +1,174 @@
+<aside class="col-md-3">
+    {{titulo}}
+    <div class="gray-background">
+        <ul>
+            <li><a class="submenu" id="datos-link" href="#datos-personales">Datos personales</a></li>
+            <li><a class="submenu" id="info-link" href="#informacion-de-perfil">Información de perfil</a></li>
+            <li><a class="submenu" id="foto-link" href="#foto-de-perfil">Imagen de perfil</a></li>
+            <li><a class="submenu" id="evaluaciones-link" href="#evaluaciones">Evaluaciones</a></li>
+        </ul>
+    </div>
+</aside>
+<div class="col-md-9 caja-form activo" id="datos-personales">
+        <form action="#">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control texto" id="nombre" placeholder="Ingresa nombre">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="apaterno">Apellido Paterno</label>
+                        <input type="text" class="form-control texto" id="apaterno" placeholder="Ingresa apellido paterno">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="amaterno">Apellido materno</label>
+                        <input type="text" class="form-control texto" id="amaterno" placeholder="Ingresa apellido materno">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="sexo">Sexo</label>
+                        <select class="form-control" id="sexo" placeholder="Ingresa">
+                            <option value="masculino">masculino</option>
+                            <option value="femenino">femenino</option>
+                            <option value="Otro">otro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="fnacimiento">Fecha de nacimiento</label>
+                        <input type="text" class="form-control fecha" id="fnacimiento" placeholder="DD/MM/AAAA">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="email">Dirección de correo electrónico</label>
+                        <input type="email" class="form-control" id="email" placeholder="tuemail@ejemplo.com">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="ncelular">Celular de contacto</label>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="ncelular">+569</span>
+                            <input type="text" class="form-control fono" placeholder="9-00000000" aria-describedby="ncelular">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-md-6">
+                <div class="form-group">
+                    <label for="idioma">Idioma</label>
+                    <select class="form-control" placeholder="Ingresa" aria-describedby="idioma">
+                        <option value="es">Español</option>
+                        <option value="in">Inglés</option>
+                        <option value="cr">Creol</option>
+                        <option value="fr">Francés</option>
+                        <option value="it">Italiano</option>
+                        <option value="ch">Chino mandarín</option>
+                    </select>
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-xs-12">    
+                    <h4>¿Tienes estudios técnico / universitario?</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">    
+                    <input type="radio" id="sin-estudio"><label for="sin-estudio">Sin estudio</label>
+                </div>
+                <div class="col-md-3">    
+                    <input type="radio" id="estudiante"><label for="estudiante">Estudiante</label>
+                </div>
+                <div class="col-md-3">    
+                    <input type="radio" id="egresado"><label for="egresado">Egresado</label>
+                </div>
+                <div class="col-md-3">    
+                    <input type="radio" id="titulado"><label for="sin-estudio">Titulado</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">    
+                    <h4>Dirección de residencia</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="region">Región</label>
+                        <select class="form-control" id="region">
+                            <option value="met">R.Metropolitana</option>
+                            <option value="tar">Tarapacá</option>
+                            <option value="ant">Antofagasta</option>
+                            <option value="ata">Atacama</option>
+                            <option value="coq">Coquimbo</option>
+                            <option value="val">Valparaíso</option>
+                            <option value="ohi">Libertador General Bernardo O'Higgins</option>
+                            <option value="mau">Maule</option>
+                            <option value="bio">Bío Bío</option>
+                            <option value="ara">Araucanía</option>
+                            <option value="lag">Los Lagos</option>
+                            <option value="ais">Aisén del General Carlos Ibáñez del Campo</option>
+                            <option value="mag">Magallanes y de la Antártica Chilena</option>
+                            <option value="rio">Los Ríos</option>
+                            <option value="ari">Arica y Parinacota</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="cuidad">Ciudad</label>
+                        <select class="form-control" id="ciudad">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="calle">Avenida / pasaje</label>
+                        <input type="text" class="form-control texto" placeholder="Av. Tuavenida / pje. Tupasaje" aria-describedby="calle">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ndireccion">N°</label>
+                        <input type="text" class="form-control numero" id="ndireccion" placeholder="N° avenida o pasaje">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="ndepto">Depto.</label>
+                        <input type="text" class="form-control ndepto" id="ndepto" placeholder="9999-B ">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="checkbox" id="ofrezcoservicio" aria-label="...">
+                        <label for="ofrezcoservicio" aria-label="ofrezcoservicio">Ofrezco mis servicios</label>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="checkbox" id="pagoporservicio" aria-label="...">
+                        <label for="pagoporservicio" aria-label="pagoporservicio">Pago por servicios</label>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div>
+            <div class="row">
+                <div class="col-xs 12">
+                    <button type="submit" class="pull-right btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>

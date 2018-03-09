@@ -1,11 +1,101 @@
 
 <div *ngIf="!identity" class="container">
-    <!-- aqui va el menu logeado-->
-     <app-nav></app-nav>
-     <router-outlet></router-outlet>
+    <!-- aqui va el menu sin logear-->
+    <nav class="row">
+        <div class="col-xs-12">
+            <div class="pull-left">
+                <img src="assets/img/marca-indahouse.png" alt="indahouse logo"><span><em> | Servicios independientes a domicilio</em></span>
+            </div>
+
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="index">¿Buscas un servicio?</a></li>
+                <li role="presentation"><a href="ofrece-tus-servicios">Ofrece tus servicios</a></li>
+                <li role="presentation"><a href="como-funciona">¿Cómo funciona?</a></li>
+                <li role="presentation"><a href="#" data-toggle="modal" data-target="#ingresarModal">Inicia sesión</a></li>
+            </ul>
+        </div>
+    </nav>
+
  </div>
  <div class="container" *ngIf="identity">
     <!-- aqui va el menu logeado-->
-    <router-outlet></router-outlet>
-    <!--<logged-nav></logged-nav>-->
+      <!-- si se identifica correctamente muestra el menu de perfil-->
+      <nav class="row">
+        <div class="col-xs-12">
+            <div class="pull-left">
+                <img src="/img/marca-indahouse.png" alt="indahouse logo"><span><em> | Servicios independientes a domicilio</em></span>
+            </div>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="index.php">Mural</a></li>
+                <li role="presentation"><a href="tus-solicitudes.php">Tus solicitudes</a><span class="solicitudes-icon">1</span></li>
+                <li role="presentation"><a href="tus-evaluaciones.php">Tus evaluaciones</a><span class="solicitudes-icon">1</span></li>
+                <li role="presentation"><a href="mensajes.php">Mensajes</a><span class="mensajes-icon">1</span></li>
+                <div class="dropdown usuario-menu">
+                  <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="imagen-perfil-menu"><img src="../img/sergio.foto.jpg" alt="foto perfil"></span>
+                    {{identity.name}} {{identity.surname}}
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    <li><a [routerLink]="['/mis-datos']">Configurar perfil</a></li>
+                    <li><a href="#" (click)="logout()">Cerrar sesión</a></li>
+                  </ul>
+                </div>
+            </ul>
+            </div>
+        </nav>
+       <router-outlet></router-outlet>
+       
  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="ingresarModal" tabindex="-1" role="dialog" aria-labelledby="ingresarModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ingresarModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <!--<a href="/inicio-sesion/index.php" class="btn btn-primary">Ingresar</a>-->
+                <h3>Logeate</h3>
+                <form action="" #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                    <label for="email">Email:</label>
+                    <input type="email" #emailLogin="ngModel" name="emailLogin" [(ngModel)]="user.email" class="form-control" required>
+                    <div *ngIf="!emailLogin.valid && emailLogin.touched">El email es requerido</div>
+                    <label for="">Password:</label>
+                    <input type="password" #passwordLogin="ngModel" name="passwordLogin" [(ngModel)]="user.password" class="form-control" required>
+                    <div *ngIf="!passwordLogin.valid && passwordLogin.touched">La contraseña es obligatoria</div>
+                    <div *ngIf="errorMessage">
+                        <div class="alert alert-danger">
+                            {{errorMessage}}
+                        </div>
+                    </div>
+                    <input type="submit" value="Login" class="btn btn-primary">
+                </form>
+                <h3>Regístrate</h3>
+                <form action="" #registerForm="ngForm" (ngSubmit)="onSubmitRegister()">
+                    <label for="">Nombre:</label>
+                    <input type="text" #name="ngModel" name="name" [(ngModel)]="user_register.name" class="form-control" required>
+                    <div *ngIf="!name.valid && name.touched">El nombre es requerido</div>
+                    <label for="">Apellido:</label>
+                    <input type="text" #surname="ngModel" name="surname" [(ngModel)]="user_register.surname" class="form-control" required>
+                    <div *ngIf="!surname.valid && surname.touched">El apellido es requerido</div>
+                    <label for="">Email:</label>
+                    <input type="email" #email="ngModel" name="email" [(ngModel)]="user_register.email" class="form-control" required>
+                    <div *ngIf="!email.valid && email.touched">El email es requerido</div>
+                    <label for="">Password:</label>
+                    <input type="password" #password="ngModel" name="password" [(ngModel)]="user_register.password" class="form-control" required>
+                    <div *ngIf="!password.valid && password.touched">La contraseña es obligatoria</div>
+                    <div *ngIf="alertRegister">
+                        <div class="alert alert-danger">
+                            {{alertRegister}}
+                        </div>
+                    </div>
+                    <input type="submit" value="Registrar" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- termina modal -->
