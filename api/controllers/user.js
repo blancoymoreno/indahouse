@@ -20,7 +20,11 @@ function saveUser(req, res){
 
     user.name = params.name;
     user.surname = params.surname;
+    //user.mlastname = params.mlastname;
+    //user.sexo = params.sexo;
+    //user.bday = params.bday;
     user.email = params.email;
+    //user.mobile = params.mobile;
     user.role = 'ROLE_USER';
     user.image = 'null';
     user.valoracionPromedio = params.valoracionPromedio;
@@ -88,6 +92,9 @@ function updateUser(req, res){
     var userId = req.params.id;
     var update = req.body;
 
+    if(userId != req.user.sub){
+        return res.status(500).send({message: 'El usuario que se intenta modificar no es el mismo que está logeado'});
+    }
     User.findByIdAndUpdate(userId, update, (err, userUpdated) => {
         if(err){
             res.status(500).send({message: 'Error al actualizar el usuario'});
@@ -117,7 +124,7 @@ function uploadImage(req, res){
                 if(!userUpdated){
                     res.status(404).send({message: 'No se ha podido actualizar el usuario'});
                 }else{
-                    res.status(200).send({user: userUpdated});
+                    res.status(200).send({image: file_name, user: userUpdated});
                 }
             });
         }else{

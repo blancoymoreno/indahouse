@@ -15,7 +15,6 @@
             </ul>
         </div>
     </nav>
-
  </div>
  <div class="container" *ngIf="identity">
     <!-- aqui va el menu logeado-->
@@ -23,7 +22,7 @@
       <nav class="row">
         <div class="col-xs-12">
             <div class="pull-left">
-                <img src="/img/marca-indahouse.png" alt="indahouse logo"><span><em> | Servicios independientes a domicilio</em></span>
+                <img src="assets/img/marca-indahouse.png" alt="indahouse logo"><span><em> | Servicios independientes a domicilio</em></span>
             </div>
             <ul class="nav nav-pills pull-right">
                 <li role="presentation" class="active"><a href="index.php">Mural</a></li>
@@ -32,8 +31,10 @@
                 <li role="presentation"><a href="mensajes.php">Mensajes</a><span class="mensajes-icon">1</span></li>
                 <div class="dropdown usuario-menu">
                   <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="imagen-perfil-menu"><img src="../img/sergio.foto.jpg" alt="foto perfil"></span>
-                    {{identity.name}} {{identity.surname}}
+                    <span class="imagen-perfil-menu"><img src="{{url + 'get-image-user/'+ identity.image}}" alt="foto perfil"></span>
+                 
+        
+                    <span id="nombre-usuario">{{identity.name}}</span>
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dLabel">

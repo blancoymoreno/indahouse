@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
 import { User } from './models/user';
+import{ GLOBAL } from './services/global';
 //declaracion para usar jquery
 declare var $:any;
 
@@ -18,12 +19,14 @@ export class AppComponent implements OnInit {
   public errorMessage;
   public token;
   public alertRegister;
+  public url;
 
   constructor(
     private _userService:UserService
   ){
   this.user = new User('','','', '', '', 'ROLE_USER', '');
   this.user_register = new User('','','', '', '', 'ROLE_USER', '');
+  this.url = GLOBAL.url;
   }
   public onSubmit() {
     console.log(this.user);

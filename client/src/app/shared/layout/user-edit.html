@@ -1,33 +1,45 @@
-<aside class="col-md-3">
-    {{titulo}}
-    <div class="gray-background">
-        <ul>
-            <li><a class="submenu" id="datos-link" href="#datos-personales">Datos personales</a></li>
-            <li><a class="submenu" id="info-link" href="#informacion-de-perfil">Información de perfil</a></li>
-            <li><a class="submenu" id="foto-link" href="#foto-de-perfil">Imagen de perfil</a></li>
-            <li><a class="submenu" id="evaluaciones-link" href="#evaluaciones">Evaluaciones</a></li>
-        </ul>
+    <div *ngIf="alertMessage">
+        <div class="alert alert-info">
+            {{alertMessage}}
+        </div>
     </div>
-</aside>
-<div class="col-md-9 caja-form activo" id="datos-personales">
-        <form action="#">
+    <aside class="col-md-3">
+        {{titulo}}
+        <div class="gray-background">
+            <ul>
+                <li><a class="submenu" id="datos-link" [routerLink]="['/mis-datos']">Datos personales</a></li>
+                <li><a class="submenu" id="info-link" [routerLink]="['/informacion-perfil']">Información de perfil</a></li>
+                <li><a class="submenu" id="foto-link" [routerLink]="['/imagen-perfil']">Imagen de perfil</a></li>
+                <li><a class="submenu" id="evaluaciones-link" [routerLink]="['/evaluaciones']">Evaluaciones</a></li>
+            </ul>
+        </div>
+    </aside>
+    <div class="col-md-9 caja-form activo" id="datos-personales">
+        <form #userUpdateForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row image-for-edit" *ngIf="user.image && user.image != 'null'">
+                <img src="{{url+'get-image-user/'+user.image}}" style="width: 50px;"/>
+            </div>
+
+                <label>Sube tu foto:</label>
+                <input type="file" placeholder="Subir imagen..." (change)= "fileChangeEvent($event)">
+
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control texto" id="nombre" placeholder="Ingresa nombre">
+                        <input type="text" #name="ngModel" name="name" [(ngModel)]="user.name" class="form-control texto" id="nombre" placeholder="Ingresa nombre">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="apaterno">Apellido Paterno</label>
-                        <input type="text" class="form-control texto" id="apaterno" placeholder="Ingresa apellido paterno">
+                        <input type="text" #surname="ngModel" name="surname" [(ngModel)]="user.surname" class="form-control texto" id="apaterno" placeholder="Ingresa apellido paterno">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="amaterno">Apellido materno</label>
-                        <input type="text" class="form-control texto" id="amaterno" placeholder="Ingresa apellido materno">
+                        <input type="text" #mlastname="ngModel" name="mlastname" [(ngModel)]="user.mlastname" class="form-control texto" id="amaterno" placeholder="Ingresa apellido materno">
                     </div>
                 </div>
             </div>
@@ -35,7 +47,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="sexo">Sexo</label>
-                        <select class="form-control" id="sexo" placeholder="Ingresa">
+                        <select class="form-control" #sexo="ngModel" name="sexo" [(ngModel)]="user.sexo" id="sexo" placeholder="Ingresa">
                             <option value="masculino">masculino</option>
                             <option value="femenino">femenino</option>
                             <option value="Otro">otro</option>
@@ -45,13 +57,13 @@
                 <div class="col-md-8">
                     <div class="form-group">
                         <label for="fnacimiento">Fecha de nacimiento</label>
-                        <input type="text" class="form-control fecha" id="fnacimiento" placeholder="DD/MM/AAAA">
+                        <input #bday="ngModel" name="bday" [(ngModel)]="user.bday" type="text" class="form-control fecha" id="fnacimiento" placeholder="DD/MM/AAAA">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="email">Dirección de correo electrónico</label>
-                        <input type="email" class="form-control" id="email" placeholder="tuemail@ejemplo.com">
+                        <input #email="ngModel" name="email" [(ngModel)]="user.email" type="email" class="form-control" id="email" placeholder="tuemail@ejemplo.com">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -59,7 +71,7 @@
                         <label for="ncelular">Celular de contacto</label>
                         <div class="input-group">
                             <span class="input-group-addon" id="ncelular">+569</span>
-                            <input type="text" class="form-control fono" placeholder="9-00000000" aria-describedby="ncelular">
+                            <input type="text" #mobile="ngModel" name="mobile" [(ngModel)]="user.mobile" class="form-control fono" placeholder="9-00000000" aria-describedby="ncelular">
                         </div>
                     </div>
                 </div>
@@ -167,7 +179,7 @@
             </div>
             <div class="row">
                 <div class="col-xs 12">
-                    <button type="submit" class="pull-right btn btn-primary">Guardar</button>
+                    <input type="submit" value="Guardar" class="pull-right btn btn-primary"/>
                 </div>
             </div>
         </form>

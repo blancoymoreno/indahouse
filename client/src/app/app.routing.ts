@@ -8,6 +8,9 @@ const appRoutes: Routes = [
   {path: 'perfil/:idUser', component: PerfilComponent},
   //{path: '', component: UserEditComponent},
   {path: 'mis-datos', component: UserEditComponent},
+  {path: 'informacion-perfil', component: UserEditComponent},
+  {path: 'imagen-perfil', component: UserEditComponent},
+  {path: 'evaluaciones', component: UserEditComponent},
   //{path: '**', component: UserEditComponent}
 ];
 
