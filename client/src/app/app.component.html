@@ -25,10 +25,10 @@
                 <a [routerLink]="['/']"><img src="assets/img/marca-indahouse.png" alt="indahouse logo"></a><span><em> | Servicios independientes a domicilio</em></span>
             </div>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation"><a [routerLink]="['/categorias', 1]">Mural</a></li>
-                <li role="presentation"><a href="tus-solicitudes.php">Tus solicitudes</a><span class="solicitudes-icon">1</span></li>
-                <li role="presentation"><a href="tus-evaluaciones.php">Tus evaluaciones</a><span class="solicitudes-icon">1</span></li>
-                <li role="presentation"><a href="mensajes.php">Mensajes</a><span class="mensajes-icon">1</span></li>
+                <li role="presentation"[routerLinkActive]="['active']"><a [routerLink]="['/categorias', 1]" >Mural</a></li>
+                <li role="presentation" [routerLinkActive]="['active']"><a href="tus-solicitudes.php">Tus solicitudes</a><span class="solicitudes-icon">1</span></li>
+                <li role="presentation" [routerLinkActive]="['active']"><a href="tus-evaluaciones.php">Tus evaluaciones</a><span class="solicitudes-icon">1</span></li>
+                <li role="presentation" [routerLinkActive]="['active']"><a href="mensajes.php">Mensajes</a><span class="mensajes-icon">1</span></li>
                 <div class="dropdown usuario-menu">
                   <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="imagen-perfil-menu"><img src="{{url + 'get-image-user/'+ identity.image}}" alt="foto perfil"></span>
@@ -38,8 +38,8 @@
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dLabel">
-                    <li><a [routerLink]="['/mis-datos']">Configurar perfil</a></li>
-                    <li><a href="#" (click)="logout()">Cerrar sesión</a></li>
+                    <li [routerLinkActive]="['active']"><a [routerLink]="['/mis-datos']">Configurar perfil</a></li>
+                    <li><a (click)="logout()">Cerrar sesión</a></li>
                   </ul>
                 </div>
             </ul>

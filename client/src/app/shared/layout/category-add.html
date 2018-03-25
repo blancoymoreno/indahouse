@@ -1,0 +1,18 @@
+<h1>{{titulo}}</h1>
+
+<form #formCategory="ngForm" (ngSubmit)="onSubmit()">
+    <div><label>Nombre</label>
+        <input type="text" #name="ngModel" name="name" [(ngModel)]="category.name" required>
+        <div *ngIf="!name.valid && name.touched">
+            <p>El nombre es obligatorio</p>
+        </div>
+    </div>
+    <div>
+        <label>Descripción</label>
+        <textarea #description="ngModel" name="description" [(ngModel)]="category.description" required></textarea>
+        <div *ngIf="!description.valid && description.touched">
+            <p>La descripción es obligatorio</p>
+        </div>
+    </div>
+    <input type="submit" value="{{titulo}}" [disabled]="!formCategory.form.valid">
+</form>

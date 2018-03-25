@@ -11,8 +11,11 @@ import {UserService} from './shared/services/user.service';
 import { PerfilComponent } from './perfil/perfil.component';
 import { EvaluarComponent } from './valoracion/evaluar.component';
 import { HttpModule } from '@angular/http';
+
+import { HomeComponent } from './components/home.component';
 import { UserEditComponent } from './components/user-edit.component';
 import { CategoryListComponent } from './components/category-list.component';
+import { CategoryAddComponent } from './components/category-add.component';
 
 
 @NgModule({
@@ -21,7 +24,9 @@ import { CategoryListComponent } from './components/category-list.component';
     PerfilComponent,
     EvaluarComponent,
     UserEditComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    HomeComponent,
+    CategoryAddComponent
   ],
   imports: [
     BrowserModule,

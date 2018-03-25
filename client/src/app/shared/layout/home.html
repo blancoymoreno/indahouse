@@ -1,0 +1,6 @@
+<div class="jumbotron" *ngIf="identity">
+    <h1>{{titulo}} {{user.name}}</h1>
+</div>
+<div class="jumbotron" *ngIf="!identity">
+    <h1>{{titulo}} Usuario externo</h1>
+</div>
