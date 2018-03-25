@@ -4,7 +4,7 @@
     <nav class="row">
         <div class="col-xs-12">
             <div class="pull-left">
-                <img src="assets/img/marca-indahouse.png" alt="indahouse logo"><span><em> | Servicios independientes a domicilio</em></span>
+                <a [routerLink]="['/']"><img src="assets/img/marca-indahouse.png" alt="indahouse logo"></a><span><em> | Servicios independientes a domicilio</em></span>
             </div>
 
             <ul class="nav nav-pills pull-right">
@@ -22,10 +22,10 @@
       <nav class="row">
         <div class="col-xs-12">
             <div class="pull-left">
-                <img src="assets/img/marca-indahouse.png" alt="indahouse logo"><span><em> | Servicios independientes a domicilio</em></span>
+                <a [routerLink]="['/']"><img src="assets/img/marca-indahouse.png" alt="indahouse logo"></a><span><em> | Servicios independientes a domicilio</em></span>
             </div>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="index.php">Mural</a></li>
+                <li role="presentation"><a [routerLink]="['/categorias', 1]">Mural</a></li>
                 <li role="presentation"><a href="tus-solicitudes.php">Tus solicitudes</a><span class="solicitudes-icon">1</span></li>
                 <li role="presentation"><a href="tus-evaluaciones.php">Tus evaluaciones</a><span class="solicitudes-icon">1</span></li>
                 <li role="presentation"><a href="mensajes.php">Mensajes</a><span class="mensajes-icon">1</span></li>

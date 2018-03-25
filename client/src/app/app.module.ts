@@ -12,6 +12,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { EvaluarComponent } from './valoracion/evaluar.component';
 import { HttpModule } from '@angular/http';
 import { UserEditComponent } from './components/user-edit.component';
+import { CategoryListComponent } from './components/category-list.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UserEditComponent } from './components/user-edit.component';
     AppComponent,
     PerfilComponent,
     EvaluarComponent,
-    UserEditComponent
+    UserEditComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserModule,
