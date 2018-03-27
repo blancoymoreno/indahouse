@@ -8,6 +8,7 @@ import { UserEditComponent } from './components/user-edit.component';
 //import categorias
 import { CategoryListComponent } from './components/category-list.component';
 import { CategoryAddComponent } from './components/category-add.component';
+import { CategoryEditComponent } from './components/category-edit.component';
 
 //import home
 import { HomeComponent } from './components/home.component';
@@ -16,6 +17,7 @@ const appRoutes: Routes = [
   {path: 'perfil/:idUser', component: PerfilComponent},
   {path: 'categorias/:page', component: CategoryListComponent},
   {path: 'crear-categoria', component: CategoryAddComponent},
+  {path: 'editar-categoria/:id', component: CategoryEditComponent},
   {path: '', component: HomeComponent},
   {path: 'mis-datos', component: UserEditComponent},
   {path: 'informacion-perfil', component: UserEditComponent},

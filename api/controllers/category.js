@@ -77,7 +77,7 @@ function updateCategory(req, res){
             if(!categoryUpdated){
                 res.status(404).send({message: 'El artista no ha sido actualizado'});
             }else{
-                res.status(200).send({category: serviceUpdated});
+                res.status(200).send({category: categoryUpdated});
             }
         }
     });

@@ -18,5 +18,12 @@
             <p>La descripción es obligatorio</p>
         </div>
     </div>
+    <div *ngIf="is_edit">
+        <div class="image_for_edit" *ngIf="category.image && category.image != 'null'">
+            <img src="{{url + 'get-image-category/' + category.image}}">
+        </div>
+        <label>Sube la imagen de categoría</label>
+        <input type="file" placeholder="Subir imagen..." (change)="fileChangeEvent($event)">
+    </div>
     <input type="submit" value="{{titulo}}" [disabled]="!formCategory.form.valid">
 </form>
