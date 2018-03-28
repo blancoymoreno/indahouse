@@ -19,7 +19,7 @@
         </div>
     </div>
     <div *ngIf="is_edit">
-        <div class="image_for_edit" *ngIf="category.image && category.image != 'null'">
+        <div class="category_image_for_edit" *ngIf="category.image && category.image != 'null'">
             <img src="{{url + 'get-image-category/' + category.image}}">
         </div>
         <label>Sube la imagen de categoría</label>

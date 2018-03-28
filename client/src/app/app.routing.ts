@@ -23,7 +23,7 @@ const appRoutes: Routes = [
   {path: 'informacion-perfil', component: UserEditComponent},
   {path: 'imagen-perfil', component: UserEditComponent},
   {path: 'evaluaciones', component: UserEditComponent},
-  {path: '**', component: HomeComponent}
+  //{path: '**', component: HomeComponent}
 ];
 
 export const appRoutingProviders: any[] = [];

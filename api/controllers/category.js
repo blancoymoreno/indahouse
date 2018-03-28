@@ -2,7 +2,7 @@
 
 var path = require('path');
 var fs = require('fs');
-//var mongoosePaginate = require('mongoose-pagination');
+var mongoosePaginate = require('mongoose-pagination');
 var Category = require('../models/category');
 var Service = require('../models/service');
 
@@ -75,7 +75,7 @@ function updateCategory(req, res){
             res.status(500).send({message: 'Error al guardar el servicio'});
         }else{
             if(!categoryUpdated){
-                res.status(404).send({message: 'El artista no ha sido actualizado'});
+                res.status(404).send({message: 'La categoría no ha sido actualizado'});
             }else{
                 res.status(200).send({category: categoryUpdated});
             }
@@ -121,11 +121,51 @@ function deleteCategory(req, res){
     });
 }
 
+function uploadImage(req, res){
+    var categoryId = req.params.id;
+    var file_name = 'No subido...';
 
+    if(req.files){
+        var file_path = req.files.image.path;
+        var file_split = file_path.split('\\');
+        var file_name = file_split[2];
+        
+        var ext_split = file_name.split('\.');
+        var file_ext = ext_split[1];
+
+        if(file_ext == 'png' || file_ext == 'jpg' || file_ext == 'gif'){
+            Category.findByIdAndUpdate(categoryId, {image: file_name}, (err, categoryUpdated) => {
+                if(!categoryId){
+                    res.status(404).send({message: 'No se ha podido actualizar la categoría'});
+                }else{
+                    res.status(200).send({category: categoryUpdated});
+                }
+            });
+        }else{
+            res.status(200).send({message: 'extensión del archivo no válida'}); 
+        }
+    }else{
+        res.status(200).send({message: 'No has subido ninguna imagen'});
+    }
+}
+
+function getImageFile(req, res){
+    var imageFile = req.params.imageFile;
+    var path_file = './uploads/categories/' + imageFile;
+    fs.exists(path_file, function(exists){
+        if(exists){
+            res.sendFile(path.resolve(path_file));
+        }else{
+            res.status(200).send({message: 'No existe la imagen...'});
+        }
+    })
+}
 module.exports = {
     getCategory,
     saveCategory,
     getAllCategories,
     updateCategory,
-    deleteCategory
+    deleteCategory,
+    uploadImage,
+    getImageFile
 };

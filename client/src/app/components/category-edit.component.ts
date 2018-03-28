@@ -3,14 +3,14 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { GLOBAL } from '../services/global';
 import { UserService } from '../services/user.service';
+import { UploadService } from '../services/upload.service';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../models/category';
-import { RootRenderer } from '@angular/core/src/render/api';
 
 @Component({
     selector: 'category-edit',
     templateUrl: '../shared/layout/category-add.html',
-    providers: [UserService, CategoryService]
+    providers: [UserService, CategoryService, UploadService]
 })
 
 export class CategoryEditComponent implements OnInit {
@@ -26,9 +26,10 @@ export class CategoryEditComponent implements OnInit {
         private _route: ActivatedRoute,
         private _router: Router,
         private _userService: UserService,
+        private _uploadService: UploadService,
         private _categoryService: CategoryService
     ){
-        this.titulo = "Crear nueva categoría";
+        this.titulo = "Editar categoría";
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
@@ -78,6 +79,17 @@ export class CategoryEditComponent implements OnInit {
                         console.log('exitooo');
                         this.alertMessage = 'la categoría se ha actualizado correctamente';
                       
+                        //SUbir la imagen de la categoría
+                        this._uploadService.makeFileRequest(this.url+'upload-image-category/'+id, [], this.filesToUpload, this.token, 'image')
+                            .then(
+                                (result) => {
+                                    this._router.navigate(['/categorias', 1]);
+                                },
+                                (error) => {
+                                    console.log(error);
+                                    console.log('error en el evento');
+                                }
+                            );
                         //this.category = response.category;
                         //this._router.navigate(['/editar-categoria'], response.category._id);
                     }
@@ -93,5 +105,10 @@ export class CategoryEditComponent implements OnInit {
                 }
             );
         });
+    }
+
+    public filesToUpload: Array<File>;
+    fileChangeEvent(fileInput: any){
+        this.filesToUpload = <Array<File>>fileInput.target.files;
     }
 }
