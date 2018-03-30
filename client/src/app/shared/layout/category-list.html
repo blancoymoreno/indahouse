@@ -4,3 +4,9 @@
         Añadir Categoría
     </a>
 </div>
+
+    <ul class="categories-list" *ngIf="identity">
+        <li *ngFor="let category of categories" class="col-lg-3 category-item">
+            {{category.name}}
+        </li>
+    </ul>

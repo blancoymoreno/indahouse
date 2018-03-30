@@ -46,7 +46,7 @@ export class CategoryAddComponent implements OnInit {
                 }else{
                     this.alertMessage = 'la categoría se ha creado correctamente';
                     this.category = response.category;
-                    //this._router.navigate(['/editar-categoria'], response.category._id);
+                    this._router.navigate(['/editar-categoria', response.category._id]);
                 }
             },
             error => {

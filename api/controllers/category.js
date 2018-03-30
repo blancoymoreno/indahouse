@@ -29,7 +29,7 @@ function getAllCategories(req, res){
         var page = 1;
     }
     
-    var itemsPerPage = 3;
+    var itemsPerPage = 10;
 
     Category.find().sort('name').paginate(page, itemsPerPage, function(err, categories, total){
         if(err){

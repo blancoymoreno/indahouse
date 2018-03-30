@@ -1,3 +1,4 @@
+<div class="" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
 <h1>{{titulo}}</h1>
 <div *ngIf="alertMessage">
     <div class="alert alert-info">
@@ -27,3 +28,7 @@
     </div>
     <input type="submit" value="{{titulo}}" [disabled]="!formCategory.form.valid">
 </form>
+</div>
+<div class="" *ngIf="!identity || identity.role != 'ROLE_ADMIN'">
+    <h1>No tienes acceso a esta sección</h1>
+</div>
