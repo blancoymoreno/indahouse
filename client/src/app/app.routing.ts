@@ -9,6 +9,7 @@ import { UserEditComponent } from './components/user-edit.component';
 import { CategoryListComponent } from './components/category-list.component';
 import { CategoryAddComponent } from './components/category-add.component';
 import { CategoryEditComponent } from './components/category-edit.component';
+import { CategoryDetailComponent } from './components/category-detail.component';
 
 //import home
 import { HomeComponent } from './components/home.component';
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
   {path: 'categorias/:page', component: CategoryListComponent},
   {path: 'crear-categoria', component: CategoryAddComponent},
   {path: 'editar-categoria/:id', component: CategoryEditComponent},
+  {path: 'categoria/:id', component: CategoryDetailComponent},
   {path: '', component: HomeComponent},
   {path: 'mis-datos', component: UserEditComponent},
   {path: 'informacion-perfil', component: UserEditComponent},

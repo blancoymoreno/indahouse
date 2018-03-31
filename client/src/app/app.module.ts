@@ -17,6 +17,7 @@ import { UserEditComponent } from './components/user-edit.component';
 import { CategoryListComponent } from './components/category-list.component';
 import { CategoryAddComponent } from './components/category-add.component';
 import { CategoryEditComponent } from './components/category-edit.component';
+import { CategoryDetailComponent } from './components/category-detail.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { CategoryEditComponent } from './components/category-edit.component';
     CategoryListComponent,
     HomeComponent,
     CategoryAddComponent,
-    CategoryEditComponent
+    CategoryEditComponent,
+    CategoryDetailComponent
   ],
   imports: [
     BrowserModule,

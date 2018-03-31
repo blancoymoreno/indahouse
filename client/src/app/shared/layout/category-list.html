@@ -3,10 +3,25 @@
     <a [routerLink]="['/crear-categoria']" *ngIf="identity && identity.role == 'ROLE_ADMIN'" class="btn btn-default">
         Añadir Categoría
     </a>
+    <ul class="pagination pull-right">
+        <li><a [routerLink]="['/categorias', prev_page]">&laquo;</a></li>
+        <li><a [routerLink]="['/categorias', next_page]">&raquo;</a></li>
+    </ul>
 </div>
 
     <ul class="categories-list" *ngIf="identity">
         <li *ngFor="let category of categories" class="col-lg-3 category-item">
-            {{category.name}}
+            <div class="category-image">
+                <img src="{{ url + 'get-image-category/'+ category.image }}" alt="" style="width:100px;"> 
+            </div>
+            <div class="category-name">
+                    <a [routerLink]="['/categoria', category._id]" class="btn btn-warning">
+                    {{category.name}}
+                </a>
+            </div>
+            <div class="buttons" *ngIf="identity.role == 'ROLE_ADMIN'">
+                <a [routerLink]="['/editar-categoria', category._id]" class="btn btn-warning">Editar</a>
+                <a href="#" class="btn btn-danger">Borrar</a>
+            </div>
         </li>
     </ul>

@@ -1,0 +1,18 @@
+<div *ngIf="category" class="category-box">
+    <div id="category-head-card">
+        <div class="image">
+            <img src="{{ url + 'get-image-category/'+ category.image }}" alt="" style="width:100px;" *ngIf="category.image && category.image !== 'null'"> 
+        </div>
+        <div class="data">
+            <h1>{{category.name}}</h1>
+            <p class="description">{{category.description}}</p>
+
+            <a *ngIf="identity.role == 'ROLE_ADMIN'" href="#" class="btn btn-default">
+                Añadir Servicio
+            </a>
+        </div>
+    </div>
+    <div id="gallery-services" *ngIf="services">
+        <!--Listar los servicios asociados a la categoria-->
+    </div>
+</div>
