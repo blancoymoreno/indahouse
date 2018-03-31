@@ -5,7 +5,6 @@ import { GLOBAL } from '../services/global';
 import { UserService } from '../services/user.service';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../models/category';
-import { RootRenderer } from '@angular/core/src/render/api';
 
 @Component({
     selector: 'category-list',
@@ -73,5 +72,32 @@ export class CategoryListComponent implements OnInit {
                 }
             );
         });
+    }
+    public confirmado;
+    onDeleteConfirm(id){
+        this.confirmado = id;
+    }
+    onCancelCategory(){
+        this.confirmado = null;
+    }
+    onDeleteCategory(id){
+        this._categoryService.deleteCategory(this.token, id).subscribe(
+            response =>{
+                if(!response.category){
+                    //alert('error en el servidor');
+                    console.log(response);
+                }
+                this.getCategories();
+            },
+            error => {
+                var errorMessage = <any>error;
+    
+                if(errorMessage != null){
+                  var errorbody = JSON.parse(error._body);
+                 //this.alertMessage = errorbody.message;
+                  console.log(error);
+                }
+            }
+        );
     }
 }

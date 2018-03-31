@@ -7,7 +7,7 @@
             <h1>{{category.name}}</h1>
             <p class="description">{{category.description}}</p>
 
-            <a *ngIf="identity.role == 'ROLE_ADMIN'" href="#" class="btn btn-default">
+            <a *ngIf="identity.role == 'ROLE_ADMIN'" [routerLink]="['/crear-servicio', category._id]" class="btn btn-default">
                 Añadir Servicio
             </a>
         </div>

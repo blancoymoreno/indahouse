@@ -18,6 +18,7 @@ import { CategoryListComponent } from './components/category-list.component';
 import { CategoryAddComponent } from './components/category-add.component';
 import { CategoryEditComponent } from './components/category-edit.component';
 import { CategoryDetailComponent } from './components/category-detail.component';
+import { ServiceAddComponent } from './components/service-add.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { CategoryDetailComponent } from './components/category-detail.component'
     CategoryListComponent,
     HomeComponent,
     CategoryAddComponent,
+    ServiceAddComponent,
     CategoryEditComponent,
     CategoryDetailComponent
   ],

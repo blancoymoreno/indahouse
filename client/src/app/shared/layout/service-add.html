@@ -1,0 +1,22 @@
+<h1>{{titulo}}</h1>
+<div *ngIf="alertMessage">
+    <div class="alert alert-info">
+        {{alertMessage}}
+    </div>
+</div>
+<form #formService="ngForm" (ngSubmit)="onSubmit()">
+    <div><label>Título servicio</label>
+        <input type="text" #title="ngModel" name="title" [(ngModel)]="service.title" required>
+        <div *ngIf="!title.valid && title.touched">
+            <p>El nombre es obligatorio</p>
+        </div>
+    </div>
+    <div>
+        <label>Descripción</label>
+        <textarea #description="ngModel" name="description" [(ngModel)]="service.description" required></textarea>
+        <div *ngIf="!description.valid && description.touched">
+            <p>La descripción es obligatoria</p>
+        </div>
+    </div>
+    <input type="submit" value="{{titulo}}" [disabled]="!formService.form.valid" class="btn btn-primary">
+</form>

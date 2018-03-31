@@ -3,18 +3,21 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { GLOBAL } from '../services/global';
 import { UserService } from '../services/user.service';
-import { UploadService } from '../services/upload.service';
 import { CategoryService } from '../services/category.service';
+import { ServiceService } from '../services/service.service';
 import { Category } from '../models/category';
+import { Service } from '../models/service';
 
 @Component({
-    selector: 'category-detail',
-    templateUrl: '../shared/layout/category-detail.html',
-    providers: [UserService, CategoryService]
+    selector: 'service-add',
+    templateUrl: '../shared/layout/service-add.html',
+    providers: [UserService, CategoryService, ServiceService]
 })
 
-export class CategoryDetailComponent implements OnInit {
+export class ServiceAddComponent implements OnInit {
+    public titulo: string;
     public category: Category;
+    public service: Service;
     public identity;
     public token;
     public url: string;
@@ -24,29 +27,32 @@ export class CategoryDetailComponent implements OnInit {
         private _route: ActivatedRoute,
         private _router: Router,
         private _userService: UserService,
+        private _serviceService: ServiceService,
         private _categoryService: CategoryService
     ){
+        this.titulo = "Crear Servicio";
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
+        this.service = new Service('','','','');
     }
 
     ngOnInit(){
-        console.log('category-edit.component.ts cargado');
-        //llamar al método del api para sacar una categoría en base a su id getCategory
-        this.getCategory();
+        console.log('service-add.component.ts cargado');
     }
-    getCategory(){
+    onSubmit(){
         this._route.params.forEach((params: Params) => {
-            let id = params['id'];
-            this._categoryService.getCategory(this.token, id).subscribe(
-                response =>{
-                    if(!response.category){
-                        this._router.navigate(['/']);
+            let category_id = params['category'];
+            this.service.category = category_id;
+
+            this._serviceService.addService(this.token, this.service).subscribe(
+                response => {
+                    if(!response.service){
+                        this.alertMessage = 'Error en el servidor';
                     }else{
-                        this.category = response.category;
-                        console.log(response.category);
-                        //sacar los servicios de la categoria
+                        this.alertMessage = 'El servicio se ha creado correctamente';
+                        this.service = response.service;
+                        //this._router.navigate(['/editar-servicio', response.category._id]);
                     }
                 },
                 error => {
@@ -54,13 +60,12 @@ export class CategoryDetailComponent implements OnInit {
         
                     if(errorMessage != null){
                       var errorbody = JSON.parse(error._body);
-                     //this.alertMessage = errorbody.message;
+                     this.alertMessage = errorbody.message;
                       console.log(error);
                     }
                 }
-            );
-
+            )
         });
-    }
 
+    }
 }
