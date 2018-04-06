@@ -93,16 +93,15 @@ function deleteCategory(req, res){
             if(!categoryRemoved){
                 res.status(404).send({message: 'El servicio no ha sido eliminado'}); 
             }else{
-                res.status(200).send({categoryRemoved});
-                //aquí comienza la eliminacion de los elementos asociados al servicio removido
-               /* Category.find({category: categoryRemoved._id}).remove((err, categoryRemoved) => {
+                //aquí comienza la eliminacion de los elementos asociados a la categoria removida
+                Service.find({category: categoryRemoved._id}).remove((err, serviceRemoved) => {
                     if(err){
-                        res.status(500).send({message: 'Error al eliminar el elemento asociado'});
+                        res.status(500).send({message: 'Error al eliminar el servicio'});
                     }else{
                         if(!serviceRemoved){
-                            res.status(404).send({message: 'El elemento asociado no ha sido eliminado'}); 
+                            res.status(404).send({message: 'El servicio asociado no ha sido eliminado'}); 
                         }else{
-                            Comentario.find({service: serviceRemoved._id}).remove((err, comentarioRemoved) => {
+                            /*Comentario.find({service: serviceRemoved._id}).remove((err, comentarioRemoved) => {
                                 if(err){
                                     res.status(500).send({message: 'Error al eliminar el elemento hijo asociado'});
                                 }else{
@@ -112,10 +111,12 @@ function deleteCategory(req, res){
                                         res.status(200).send({category: categoryRemoved}); 
                                     }
                                 }
-                            });
+                              
+                            }*/
+                            res.status(200).send({category: categoryRemoved}); 
                         }
                     }
-                });*/
+                });
             }
         }
     });

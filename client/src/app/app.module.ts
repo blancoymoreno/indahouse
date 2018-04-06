@@ -19,6 +19,7 @@ import { CategoryAddComponent } from './components/category-add.component';
 import { CategoryEditComponent } from './components/category-edit.component';
 import { CategoryDetailComponent } from './components/category-detail.component';
 import { ServiceAddComponent } from './components/service-add.component';
+import { ServiceEditComponent } from './components/service-edit.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { ServiceAddComponent } from './components/service-add.component';
     HomeComponent,
     CategoryAddComponent,
     ServiceAddComponent,
+    ServiceEditComponent,
     CategoryEditComponent,
     CategoryDetailComponent
   ],

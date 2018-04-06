@@ -52,7 +52,7 @@ export class ServiceAddComponent implements OnInit {
                     }else{
                         this.alertMessage = 'El servicio se ha creado correctamente';
                         this.service = response.service;
-                        //this._router.navigate(['/editar-servicio', response.category._id]);
+                        this._router.navigate(['/editar-servicio', response.service._id]);
                     }
                 },
                 error => {

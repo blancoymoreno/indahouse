@@ -18,5 +18,12 @@
             <p>La descripción es obligatoria</p>
         </div>
     </div>
+    <div *ngIf="is_edit">
+        <div class="service_image_for_edit" *ngIf="service.image && service.image != 'null'">
+            <img src="{{url + 'get-image-service/' + service.image}}">
+        </div>
+        <label>Sube la imagen de servicio</label>
+        <input type="file" placeholder="Subir imagen..." (change)="fileChangeEvent($event)">
+    </div>
     <input type="submit" value="{{titulo}}" [disabled]="!formService.form.valid" class="btn btn-primary">
 </form>

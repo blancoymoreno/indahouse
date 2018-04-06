@@ -13,9 +13,11 @@ import { CategoryDetailComponent } from './components/category-detail.component'
 
 //import servicio
 import { ServiceAddComponent } from './components/service-add.component';
+import { ServiceEditComponent } from './components/service-edit.component';
 
 //import home
 import { HomeComponent } from './components/home.component';
+
 
 const appRoutes: Routes = [
   {path: 'perfil/:idUser', component: PerfilComponent},
@@ -24,6 +26,7 @@ const appRoutes: Routes = [
   {path: 'editar-categoria/:id', component: CategoryEditComponent},
   {path: 'categoria/:id', component: CategoryDetailComponent},
   {path: 'crear-servicio/:category', component: ServiceAddComponent},
+  {path: 'editar-servicio/:id', component: ServiceEditComponent},
   {path: '', component: HomeComponent},
   {path: 'mis-datos', component: UserEditComponent},
   {path: 'informacion-perfil', component: UserEditComponent},
