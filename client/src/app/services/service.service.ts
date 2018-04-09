@@ -12,6 +12,22 @@ export class ServiceService {
     constructor(private _http: Http){
         this.url = GLOBAL.url;
     }
+    getServices(token, categoryId = null){
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+
+        let options = new RequestOptions({headers:headers});
+        if(categoryId == null){
+            return this._http.get(this.url+'services', options)
+            .map(res => res.json());
+        }else{
+            return this._http.get(this.url+'services/'+ categoryId, options)
+            .map(res => res.json());
+        }
+       
+    }
     getService(token, id: string){
         let headers = new Headers({
             'Content-Type': 'application/json',
@@ -39,5 +55,15 @@ export class ServiceService {
         });
         return this._http.put(this.url+'service/'+id, params, {headers:headers})
                 .map(res => res.json());
+    }
+    deleteService(token, id: string){
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+
+        let options = new RequestOptions({headers:headers});
+        return this._http.delete(this.url+'service/'+id, options)
+                    .map(res => res.json());
     }
 }

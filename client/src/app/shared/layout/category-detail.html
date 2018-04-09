@@ -14,5 +14,33 @@
     </div>
     <div id="gallery-services" *ngIf="services">
         <!--Listar los servicios asociados a la categoria-->
+        <ul class="services-list">
+            <li *ngFor="let service of services" class="col-lg-4 service-item">
+                <div class="service-image">
+                    <img src="{{url + 'get-image-service/' + service.image}}" alt="">
+                </div>
+                <div class="service-name">
+                    <p>
+                        <a href="#">
+                            {{service.title}}
+                        </a>
+                    </p>
+                    <p>
+                        <a [routerLink]="['/category', service.category._id]">
+                            {{service.category.name}}
+                        </a>
+                    </p>
+                    <div class="buttons" *ngIf="identity.role == 'ROLE_ADMIN'">
+                        <a [routerLink]="['/editar-servicio', service._id]" class="btn btn-warning">Editar</a>
+                        <a (click)="onDeleteConfirm(service._id)" class="btn btn-danger">Borrar</a>
+                    </div>
+                    <div class="confirm" *ngIf="confirmado == service._id">
+                        <a (click)="onDeleteService(service._id)" class="btn btn-danger">Sí, Borrar</a>
+                        <a (click)="onCancelService()" class="btn btn-default">Cancelar</a>
+                    </div>
+                </div>
+          
+            </li>
+        </ul>
     </div>
 </div>

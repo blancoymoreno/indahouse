@@ -677,3 +677,19 @@ nav img {
 .mx-auto {
     margin-left: auto !important;
 }
+/* You can add global styles to this file, and also import other style files */
+.service-list{
+    margin: 0px;
+    padding: 0px;
+    margin-top: 30px;
+    list-style: none;  
+  }
+  .service-item .service-image {
+      height: 245px;
+      width: 100%;
+      overflow: hidden;
+      background: black;
+  }
+  .service-image img{
+     width: 100%;
+  }

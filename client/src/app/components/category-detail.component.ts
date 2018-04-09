@@ -5,16 +5,19 @@ import { GLOBAL } from '../services/global';
 import { UserService } from '../services/user.service';
 import { UploadService } from '../services/upload.service';
 import { CategoryService } from '../services/category.service';
+import { ServiceService } from '../services/service.service';
 import { Category } from '../models/category';
+import { Service } from '../models/service';
 
 @Component({
     selector: 'category-detail',
     templateUrl: '../shared/layout/category-detail.html',
-    providers: [UserService, CategoryService]
+    providers: [UserService, CategoryService, ServiceService]
 })
 
 export class CategoryDetailComponent implements OnInit {
     public category: Category;
+    public services: Service[];
     public identity;
     public token;
     public url: string;
@@ -24,7 +27,8 @@ export class CategoryDetailComponent implements OnInit {
         private _route: ActivatedRoute,
         private _router: Router,
         private _userService: UserService,
-        private _categoryService: CategoryService
+        private _categoryService: CategoryService,
+        private _serviceService: ServiceService
     ){
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
@@ -47,7 +51,24 @@ export class CategoryDetailComponent implements OnInit {
                         this.category = response.category;
                         console.log(response.category);
                         //sacar los servicios de la categoria
-                    }
+                        this._serviceService.getServices(this.token, response.category._id).subscribe(
+                            response => {
+                               if(!response.services){
+                                    this.alertMessage = 'Esta categoria no tiene servicios';
+                               }else{
+                                    this.services = response.services;
+                               }
+                            }
+                            ,error => {
+                                var errorMessage = <any>error;
+                    
+                                if(errorMessage != null){
+                                  var errorbody = JSON.parse(error._body);
+                                 //this.alertMessage = errorbody.message;
+                                  console.log(error);
+                                }
+                            });
+                        }
                 },
                 error => {
                     var errorMessage = <any>error;
@@ -62,5 +83,31 @@ export class CategoryDetailComponent implements OnInit {
 
         });
     }
+    public confirmado;
+    onDeleteConfirm(id){
+        this.confirmado = id;
+    }
 
+    onCancelService(){
+        this.confirmado = null;
+    }
+    onDeleteService(id){
+        this._serviceService.deleteService(this.token, id).subscribe(
+            response => {
+               if(!response.service){
+                   alert('error en el servidor')
+               }
+               this.getCategory();
+            },
+            error => {
+                var errorMessage = <any>error;
+    
+                if(errorMessage != null){
+                  var errorbody = JSON.parse(error._body);
+                 //this.alertMessage = errorbody.message;
+                  console.log(error);
+                }
+            }
+        )
+    }
 }

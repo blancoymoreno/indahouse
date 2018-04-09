@@ -78,12 +78,14 @@ export class CategoryEditComponent implements OnInit {
                     }else{
                         console.log('exitooo');
                         this.alertMessage = 'la categoría se ha actualizado correctamente';
-                      
+                      if(!this.filesToUpload){
+                        this._router.navigate(['/categoria', response.category._id]);
+                      }else{
                         //SUbir la imagen de la categoría
                         this._uploadService.makeFileRequest(this.url+'upload-image-category/'+id, [], this.filesToUpload, this.token, 'image')
                             .then(
                                 (result) => {
-                                    this._router.navigate(['/categorias', 1]);
+                                    this._router.navigate(['/categoria', response.category._id]);
                                 },
                                 (error) => {
                                     console.log(error);
@@ -91,7 +93,8 @@ export class CategoryEditComponent implements OnInit {
                                 }
                             );
                         //this.category = response.category;
-                        //this._router.navigate(['/editar-categoria'], response.category._id);
+                        //     
+                        }
                     }
                 },
                 error => {
