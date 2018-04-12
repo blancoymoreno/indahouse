@@ -14,6 +14,7 @@ import { CategoryDetailComponent } from './components/category-detail.component'
 //import servicio
 import { ServiceAddComponent } from './components/service-add.component';
 import { ServiceEditComponent } from './components/service-edit.component';
+import { ServiceDetailComponent } from './components/service-detail.component';
 
 //import home
 import { HomeComponent } from './components/home.component';
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
   {path: 'informacion-perfil', component: UserEditComponent},
   {path: 'imagen-perfil', component: UserEditComponent},
   {path: 'evaluaciones', component: UserEditComponent},
+  {path: 'servicio/:id', component: ServiceDetailComponent},
   //{path: '**', component: HomeComponent}
 ];
 

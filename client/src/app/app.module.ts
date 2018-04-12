@@ -20,6 +20,7 @@ import { CategoryEditComponent } from './components/category-edit.component';
 import { CategoryDetailComponent } from './components/category-detail.component';
 import { ServiceAddComponent } from './components/service-add.component';
 import { ServiceEditComponent } from './components/service-edit.component';
+import { ServiceDetailComponent } from './components/service-detail.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ServiceEditComponent } from './components/service-edit.component';
     ServiceAddComponent,
     ServiceEditComponent,
     CategoryEditComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
+    ServiceDetailComponent
   ],
   imports: [
     BrowserModule,
