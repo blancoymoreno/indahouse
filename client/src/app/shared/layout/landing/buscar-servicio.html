@@ -1,0 +1,40 @@
+<div *ngIf="!identity">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="text-center">
+            <h1>{{titulo}}</h1>
+            <p>Encuentra personas independientes que te ayudarán</p>
+        </div>
+        <!--<div class="input-group buscador-general">
+            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span>
+            <input type="text" class="form-control" placeholder="Ingresa nombre o iniciales del servicio" aria-describedby="basic-addon1">
+        </div>
+        <a class="pull-right">O busca por todas las categorías <span class="glyphicon glyphicon-menu-right"></span></a>-->
+    </div>
+    <div class="row" class="home-servicios-seccion">
+        <div class="col-md-12">
+            <category-list></category-list>
+            <!--<a href="categorias/1" class="pull-right">Ver todas las categorías</a>-->
+            <div class="row">
+                <div class="col-md-12">
+                        <a class="pull-right" [routerLink]="['/categorias', 1]" >Ver todas <span class="glyphicon glyphicon-menu-right"></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center col-md-12">
+            <h2>¿Por qué usar InDaHouse?</h2>
+            <p>InDaHouse reune a personas independientes que proveen servicios a domicilio y las conecta con sus clientes, facilitando la tarea de buscar la mejor opción y hacer trato con personas de confianza</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Oportunidades financieras</h2>
+            <p>Ya sea que te dediques tiempo completo o esporádicamente, InDaHouse es la mejor opción si buscas ingresos extras o emprender el camino de la independencia laboral. Gracias a su comunidad podrás encontrar nuevas oportunidades continuamente.</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Tú tienes el control</h2>
+            <p>Cada usuario que posee una cuenta en InDaHouse tiene la libertad de estudiar a su cliente o proveedor, midiendo así la confianza y transparencia que cada uno necesita. Tus datos estarán seguros y sólo serán usados por otras personas que busquen hacer trato contigo.</p>
+        </div>
+        <div class="col-md-4">
+            <h2>Todos son bienvenidos</h2>
+            <p>Si eres mayor de edad y tengas o no una profesión relacionada a tu servicio, puedes crear tu propia cuenta ¡y empezar a prestar servicios a quien te necesite!</p>
+        </div>
+    </div>
+</div>

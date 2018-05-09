@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PerfilComponent } from './perfil/perfil.component';
 // import usuario
 import { UserEditComponent } from './components/user-edit.component';
+import { InformacionEditComponent } from './components/informacion-edit.component';
 
 //import categorias
 import { CategoryListComponent } from './components/category-list.component';
@@ -16,8 +17,15 @@ import { ServiceAddComponent } from './components/service-add.component';
 import { ServiceEditComponent } from './components/service-edit.component';
 import { ServiceDetailComponent } from './components/service-detail.component';
 
+//import evaluaciones
+import { EvaluarComponent } from './valoracion/evaluar.component';//cambiar url
+
 //import home
 import { HomeComponent } from './components/home.component';
+//landing
+import { BuscarServicioComponent } from './components/landing/buscar-servicio.component';
+import { OfreceServiciosComponent } from './components/landing/ofrece-servicios.component';
+import { ComoFuncionaComponent } from './components/landing/como-funciona.component';
 
 
 const appRoutes: Routes = [
@@ -30,11 +38,15 @@ const appRoutes: Routes = [
   {path: 'editar-servicio/:id', component: ServiceEditComponent},
   {path: '', component: HomeComponent},
   {path: 'mis-datos', component: UserEditComponent},
+  {path: 'informacion-perfil', component: InformacionEditComponent},
   {path: 'informacion-perfil', component: UserEditComponent},
   {path: 'imagen-perfil', component: UserEditComponent},
-  {path: 'evaluaciones', component: UserEditComponent},
+  {path: 'mis-evaluaciones', component: EvaluarComponent},
   {path: 'servicio/:id', component: ServiceDetailComponent},
-  //{path: '**', component: HomeComponent}
+  {path: 'buscar-servicios', component: BuscarServicioComponent},
+  {path: 'ofrece-tus-servicios', component: OfreceServiciosComponent},
+  {path: 'como-funciona', component: ComoFuncionaComponent},
+  {path: '**', component: BuscarServicioComponent}
 ];
 
 export const appRoutingProviders: any[] = [];

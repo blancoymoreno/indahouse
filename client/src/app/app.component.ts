@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-
 import { UserService } from './services/user.service';
 import { User } from './models/user';
 import{ GLOBAL } from './services/global';
+import {NgForm} from '@angular/forms';
 //declaracion para usar jquery
 declare var $:any;
 
@@ -28,8 +28,8 @@ export class AppComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router
   ){
-  this.user = new User('','','', '', '', 'ROLE_USER', '');
-  this.user_register = new User('','','', '', '', 'ROLE_USER', '');
+  this.user = new User('','','','','','','', '', '','','','', '', '','','','', 'ROLE_USER', '','', '');
+  this.user_register = new User('','','','','','','','','','', '', '','','','', '', '', 'ROLE_USER', '','', '');
   this.url = GLOBAL.url;
   }
   public onSubmit() {
@@ -54,10 +54,11 @@ export class AppComponent implements OnInit {
               alert('El token no se ha generado correctamente');
             }else{
              // crear elemento en el localstorage para tener el token disponible
+             this._router.navigate(['/informacion-perfil']);
              localStorage.setItem('token', token);  
              console.log(token);
                console.log(identity);
-               $("#ingresarModal").modal("hide");
+               $("#loginModal").modal("hide");
             }
            },
            error => {
@@ -85,12 +86,14 @@ export class AppComponent implements OnInit {
  }
 
   logout(){
+    window.location.reload();
     localStorage.removeItem('identity');
     localStorage.removeItem('token');
     localStorage.clear();
     this.identity = null;
     this.token = null;
     this._router.navigate(['/']);
+
   }
   onSubmitRegister(){
     console.log(this.user_register);
@@ -104,7 +107,7 @@ export class AppComponent implements OnInit {
           this.alertRegister = "Error al registrarse";
         }else{
           this.alertRegister = "El registro se ha realizado correctamente, ahora puedes logear con" + this.user_register.email;
-          this.user_register = new User('','','', '', '', 'ROLE_USER', '');
+          this.user_register = new User('','','','','', '', '', '', '', '', '', '','','','', '','', 'ROLE_USER', '','', '');
         }
       },
       error => {

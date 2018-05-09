@@ -1,11 +1,8 @@
-<div class="jumbotron" *ngIf="identity">
-    <h1>{{titulo}} {{user.name}}</h1>
-</div>
-<div class="home" *ngIf="!identity">
-        <div class="col-md-6 col-md-offset-6">
-            <div>
+<div *ngIf="!identity">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="text-center">
                 <h1>{{titulo}}</h1>
-                <p>Indahouse es una plataforma diseñada para intermediar entre quien ofrece un servicio a domicilio y quien paga por él.</p>
+                <p>Independízate y encuentra el cliente indicado</p>
             </div>
             <!--<div class="input-group buscador-general">
                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search"></span></span>
@@ -14,6 +11,15 @@
             <a class="pull-right">O busca por todas las categorías <span class="glyphicon glyphicon-menu-right"></span></a>-->
         </div>
         <div class="row" class="home-servicios-seccion">
+            <div class="col-md-12">
+                <category-list></category-list>
+                <!--<a href="categorias/1" class="pull-right">Ver todas las categorías</a>-->
+                <div class="row">
+                    <div class="col-md-12">
+                            <a class="pull-right" [routerLink]="['/categorias', 1]" >Ver todas <span class="glyphicon glyphicon-menu-right"></span></a>
+                    </div>
+                </div>
+            </div>
             <div class="text-center col-md-12">
                 <h2>¿Por qué usar InDaHouse?</h2>
                 <p>InDaHouse reune a personas independientes que proveen servicios a domicilio y las conecta con sus clientes, facilitando la tarea de buscar la mejor opción y hacer trato con personas de confianza</p>
@@ -31,4 +37,5 @@
                 <p>Si eres mayor de edad y tengas o no una profesión relacionada a tu servicio, puedes crear tu propia cuenta ¡y empezar a prestar servicios a quien te necesite!</p>
             </div>
         </div>
-</div>
+    </div>
+    

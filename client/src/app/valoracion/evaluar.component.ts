@@ -1,20 +1,35 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Valoracion } from '../shared/models/Valoracion';
 import { ValoracionesService } from '../shared/services/valoraciones.service';
+import{ GLOBAL } from '../services/global';
+import { UserService } from '../services/user.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-evaluar',
-  templateUrl: './evaluar.component.html'
+  templateUrl: './evaluar.component.html',
+  providers: [UserService]
 })
+
 export class EvaluarComponent implements OnInit, OnChanges {
+  public valoracion: Valoracion;
+  public titulo: string;
+  public user:User;
+  public identity;
+  public token;
+  public alertMessage;
+  public url:string;
 
-  valoracion: Valoracion;
   @Input() proveedor: any;
-
   constructor(
-    private valoracionService: ValoracionesService,
+    private _valoracionService: ValoracionesService,
+    private _userService: UserService
   ) {
-
+    this.titulo = "Mis evaluacioness";
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
+    this.user = this.identity;
+    this.url = GLOBAL.url;
     // inicializar Valoracion
     this.valoracion = {
       numEvaluacion: 0,
@@ -34,6 +49,9 @@ export class EvaluarComponent implements OnInit, OnChanges {
 
   }
 
+  ngOnInit() {
+    console.log('evaluar.component.ts cargado');
+  }
   mouseEnterStar(event, num) {
     const numNota = num;
     const clase: string = event.target.className;
@@ -85,7 +103,7 @@ export class EvaluarComponent implements OnInit, OnChanges {
       this.valoracion.numEvaluacion = 1;
     }
     this.getPromedioValoracion();
-    this.valoracionService.addValoracion(this.valoracion).subscribe(res => {
+    this._valoracionService.addValoracion(this.valoracion).subscribe(res => {
       console.log('Se ha agregado ', res);
       this.limpiarModalValoracion();
     },
@@ -110,8 +128,6 @@ export class EvaluarComponent implements OnInit, OnChanges {
     textarea.value = '';
   }
 
-  ngOnInit() {
-  }
 
   ngOnChanges() {
     this.valoracion.idUserValorado = this.proveedor._id;

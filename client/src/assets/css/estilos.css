@@ -678,6 +678,11 @@ nav img {
     margin-left: auto !important;
 }
 /* You can add global styles to this file, and also import other style files */
+
+a {
+    cursor: pointer;
+}
+/* You can add global styles to this file, and also import other style files */
 .service-list{
     margin: 0px;
     padding: 0px;
@@ -693,3 +698,20 @@ nav img {
   .service-image img{
      width: 100%;
   }
+  .buscador-general .input-group-addon {
+      background: transparent;
+      border: none;
+      font-size: 25px;
+  }
+  .buscador-general {
+      border: none;
+  }
+  .buscador-general input {
+      border: none;
+      font-size: 25px;
+      box-shadow: none;
+      border-bottom: 1px solid gray;
+  }
+.home-servicios-seccion .pagination {
+    display: none;
+}

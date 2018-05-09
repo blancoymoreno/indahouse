@@ -7,6 +7,7 @@ import { CategoryService } from '../services/category.service';
 import { ServiceService } from '../services/service.service';
 import { Category } from '../models/category';
 import { Service } from '../models/service';
+import { CategoryListComponent} from './category-list.component';
 
 @Component({
     selector: 'service-add',
@@ -17,11 +18,14 @@ import { Service } from '../models/service';
 export class ServiceAddComponent implements OnInit {
     public titulo: string;
     public category: Category;
+    public categories: Category[];
     public service: Service;
     public identity;
     public token;
     public url: string;
     public alertMessage;
+    public next_page;
+    public prev_page;
 
     constructor(
         private _route: ActivatedRoute,
@@ -39,6 +43,60 @@ export class ServiceAddComponent implements OnInit {
 
     ngOnInit(){
         console.log('service-add.component.ts cargado');
+        this.getCategories();
+    }
+    getCategories(){
+        this._route.params.forEach((params: Params) =>{
+            let page = +params['page'];
+            if(!page){
+                page = 1;
+            }else{
+                this.next_page = page+1;
+                this.prev_page = page-1;
+
+                if(this.prev_page == 0){
+                    this.prev_page = 1;
+                }
+            }
+            //obtener categorias con token, desde el servicio
+            this._categoryService.getCategories(this.token, page).subscribe(
+                response =>{
+                    if(!response.categories){
+                        this._router.navigate(['/']);
+                    }else{
+                        this.categories = response.categories;
+                    }
+                },
+                error => {
+                    var errorMessage = <any>error;
+        
+                    if(errorMessage != null){
+                      var errorbody = JSON.parse(error._body);
+                     //this.alertMessage = errorbody.message;
+                      console.log(error);
+                    }
+                }
+            );
+            //obtener categorias sin token, desde el servicio
+            /*this._categoryService.getCategories(page).subscribe(
+                response =>{
+                    if(!response.categories){
+                        this._router.navigate(['/']);
+                    }else{
+                        this.categories = response.categories;
+                    }
+                },
+                error => {
+                    var errorMessage = <any>error;
+        
+                    if(errorMessage != null){
+                      var errorbody = JSON.parse(error._body);
+                     //this.alertMessage = errorbody.message;
+                      console.log(error);
+                    }
+                }
+            );*/
+        });
     }
     onSubmit(){
         this._route.params.forEach((params: Params) => {

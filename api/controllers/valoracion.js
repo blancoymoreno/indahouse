@@ -23,6 +23,7 @@ function create(req, res) {
                     (err, userUpdated) => {
                         if (err) {
                             res.status(500).send({ message: 'Error al actualizar el usuario' });
+                            console.log(err);
                         } else {
                             if (!userUpdated) {
                                 res.status(404).send({ message: 'Usuario no ha sido actualizado' });

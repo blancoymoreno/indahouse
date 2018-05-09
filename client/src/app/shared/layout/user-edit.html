@@ -1,28 +1,16 @@
-    <div *ngIf="alertMessage">
+<div *ngIf="identity"> 
+   <div *ngIf="alertMessage">
         <div class="alert alert-info">
             {{alertMessage}}
         </div>
     </div>
     <aside class="col-md-3">
-        {{titulo}}
-        <div class="gray-background">
-            <ul>
-                <li><a class="submenu" id="datos-link" [routerLink]="['/mis-datos']">Datos personales</a></li>
-                <li><a class="submenu" id="info-link" [routerLink]="['/informacion-perfil']">Información de perfil</a></li>
-                <li><a class="submenu" id="foto-link" [routerLink]="['/imagen-perfil']">Imagen de perfil</a></li>
-                <li><a class="submenu" id="evaluaciones-link" [routerLink]="['/evaluaciones']">Evaluaciones</a></li>
-            </ul>
-        </div>
+       <configurar-perfil-menu></configurar-perfil-menu>
     </aside>
     <div class="col-md-9 caja-form activo" id="datos-personales">
+        <h1>{{titulo}}</h1>
         <form #userUpdateForm="ngForm" (ngSubmit)="onSubmit()">
-            <div class="row image-for-edit" *ngIf="user.image && user.image != 'null'">
-                <img src="{{url+'get-image-user/'+user.image}}" style="width: 50px;"/>
-            </div>
-
-                <label>Sube tu foto:</label>
-                <input type="file" placeholder="Subir imagen..." (change)= "fileChangeEvent($event)">
-
+          
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -96,16 +84,16 @@
             </div>
             <div class="row">
                 <div class="col-md-3">    
-                    <input type="radio" id="sin-estudio"><label for="sin-estudio">Sin estudio</label>
+                    <input type="radio" id="sin-estudio" value="sin estudio" #estudios="ngModel" name="estudios" [(ngModel)]="user.estudios"><label for="sin-estudio">Sin estudio</label>
                 </div>
                 <div class="col-md-3">    
-                    <input type="radio" id="estudiante"><label for="estudiante">Estudiante</label>
+                    <input type="radio" id="estudiante" value="estudiante" #estudios="ngModel" name="estudios" [(ngModel)]="user.estudios"><label for="estudiante">Estudiante</label>
                 </div>
                 <div class="col-md-3">    
-                    <input type="radio" id="egresado"><label for="egresado">Egresado</label>
+                    <input type="radio" id="egresado" value="egresado" #estudios="ngModel" name="estudios" [(ngModel)]="user.estudios"><label for="egresado">Egresado</label>
                 </div>
                 <div class="col-md-3">    
-                    <input type="radio" id="titulado"><label for="sin-estudio">Titulado</label>
+                    <input type="radio" id="titulado" value="titulado" #estudios="ngModel" name="estudios" [(ngModel)]="user.estudios"><label for="sin-estudio">Titulado</label>
                 </div>
             </div>
             <div class="row">
@@ -117,7 +105,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="region">Región</label>
-                        <select class="form-control" id="region">
+                        <select class="form-control" id="region" #region="ngModel" name="region" [(ngModel)]="user.region">
                             <option value="met">R.Metropolitana</option>
                             <option value="tar">Tarapacá</option>
                             <option value="ant">Antofagasta</option>
@@ -139,43 +127,30 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="cuidad">Ciudad</label>
-                        <select class="form-control" id="ciudad">
-                            <option value=""></option>
+                        <select class="form-control" id="ciudad" #cuidad="ngModel" name="cuidad" [(ngModel)]="user.cuidad">
+                            <option value="santiago">santiago</option>
+                            <option value="molina">molina</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="calle">Avenida / pasaje</label>
-                        <input type="text" class="form-control texto" placeholder="Av. Tuavenida / pje. Tupasaje" aria-describedby="calle">
+                        <input type="text" #avdireccion="ngModel" name="avdireccion" [(ngModel)]="user.avdireccion" class="form-control texto" placeholder="Av. Tuavenida / pje. Tupasaje" aria-describedby="calle">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="ndireccion">N°</label>
-                        <input type="text" class="form-control numero" id="ndireccion" placeholder="N° avenida o pasaje">
+                        <input type="text" #ndireccion="ngModel" name="ndireccion" [(ngModel)]="user.ndireccion" class="form-control numero" id="ndireccion" placeholder="N° avenida o pasaje">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="ndepto">Depto.</label>
-                        <input type="text" class="form-control ndepto" id="ndepto" placeholder="9999-B ">
+                        <input type="text" #deptodireccion="ngModel" name="deptodireccion" [(ngModel)]="user.deptodireccion" class="form-control ndepto" id="ndepto" placeholder="9999-B ">
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="input-group">
-                        <input type="checkbox" id="ofrezcoservicio" aria-label="...">
-                        <label for="ofrezcoservicio" aria-label="ofrezcoservicio">Ofrezco mis servicios</label>
-                    </div><!-- /input-group -->
-                </div><!-- /.col-lg-6 -->
-                <div class="col-lg-6">
-                    <div class="input-group">
-                        <input type="checkbox" id="pagoporservicio" aria-label="...">
-                        <label for="pagoporservicio" aria-label="pagoporservicio">Pago por servicios</label>
-                    </div><!-- /input-group -->
-                </div><!-- /.col-lg-6 -->
             </div>
             <div class="row">
                 <div class="col-xs 12">
@@ -184,3 +159,4 @@
             </div>
         </form>
     </div>
+</div>

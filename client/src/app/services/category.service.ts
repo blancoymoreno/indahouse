@@ -12,15 +12,36 @@ export class CategoryService {
     constructor(private _http: Http){
         this.url = GLOBAL.url;
     }
+    //obtenercategorias con token
     getCategories(token, page){
         let headers = new Headers({
             'Content-Type': 'application/json',
-            'Authorization': token
+           'Authorization': token
         });
         let options = new RequestOptions({headers: headers});
         return this._http.get(this.url+'categories/'+page, options)
                 .map(res => res.json());
     }
+    //obtener categorias sin token
+    /*getCategories(page){
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        let options = new RequestOptions({headers: headers});
+        return this._http.get(this.url+'categories/'+page, options)
+                .map(res => res.json());
+    }*/
+    //categoria sin token
+    /*getCategory(id: string){
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+            //'Authorization': token
+        })
+        let options = new RequestOptions({headers: headers});
+        return this._http.get(this.url+'category/'+id, options)
+                .map(res => res.json());
+    }*/
+    //categoria con token
     getCategory(token, id: string){
         let headers = new Headers({
             'Content-Type': 'application/json',
@@ -30,7 +51,6 @@ export class CategoryService {
         return this._http.get(this.url+'category/'+id, options)
                 .map(res => res.json());
     }
-
     addCategory(token, category: Category){
         let params = JSON.stringify(category);
         let headers = new Headers({

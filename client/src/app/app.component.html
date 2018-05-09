@@ -6,15 +6,16 @@
             <div class="pull-left">
                 <a [routerLink]="['/']"><img src="assets/img/marca-indahouse.png" alt="indahouse logo"></a><span><em> | Servicios independientes a domicilio</em></span>
             </div>
-
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="index">¿Buscas un servicio?</a></li>
-                <li role="presentation"><a href="ofrece-tus-servicios">Ofrece tus servicios</a></li>
-                <li role="presentation"><a href="como-funciona">¿Cómo funciona?</a></li>
-                <li role="presentation"><a href="#" data-toggle="modal" data-target="#ingresarModal">Inicia sesión</a></li>
+                <li role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['/buscar-servicios']">¿Buscas un servicio?</a></li>
+                <li role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['/ofrece-tus-servicios']">Ofrece tus servicios</a></li>
+                <!--<li role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['/como-funciona']">¿Cómo funciona?</a></li>-->
+                <li role="presentation" [routerLinkActive]="['active']"><a href="#" data-toggle="modal" data-target="#loginModal">Inicia sesión</a></li>
+                <li role="presentation" [routerLinkActive]="['active']"><a href="#" data-toggle="modal" data-target="#registerModal">Resgístrate</a></li>
             </ul>
         </div>
     </nav>
+    <router-outlet></router-outlet>
  </div>
  <div class="container" *ngIf="identity">
     <!-- aqui va el menu logeado-->
@@ -26,8 +27,8 @@
             </div>
             <ul class="nav nav-pills pull-right">
                 <li role="presentation"[routerLinkActive]="['active']"><a [routerLink]="['/categorias', 1]" >Mural</a></li>
-                <li role="presentation" [routerLinkActive]="['active']"><a href="tus-solicitudes.php">Tus solicitudes</a><span class="solicitudes-icon">1</span></li>
-                <li role="presentation" [routerLinkActive]="['active']"><a href="tus-evaluaciones.php">Tus evaluaciones</a><span class="solicitudes-icon">1</span></li>
+                <li role="presentation" [routerLinkActive]="['active']"><a href="tus-solicitudes.php">Mis solicitudes</a><span class="solicitudes-icon">1</span></li>
+                <li role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['/mis-evaluaciones']">Mis evaluaciones</a><span class="solicitudes-icon">1</span></li>
                 <li role="presentation" [routerLinkActive]="['active']"><a href="mensajes.php">Mensajes</a><span class="mensajes-icon">1</span></li>
                 <div class="dropdown usuario-menu">
                   <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,20 +47,18 @@
             </div>
         </nav>
        <router-outlet></router-outlet>
-       
  </div>
 
-<!-- Modal -->
-<div class="modal fade" id="ingresarModal" tabindex="-1" role="dialog" aria-labelledby="ingresarModalLabel">
+<!-- Modal login-->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="ingresarModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="loginModalLabel">Inicia sesión</h4>
             </div>
             <div class="modal-body">
-                <!--<a href="/inicio-sesion/index.php" class="btn btn-primary">Ingresar</a>-->
-                <h3>Logeate</h3>
+                <!--<a href="/inicio-sesion/index.php" class="btn btn-primary">login</a>-->
                 <form action="" #loginForm="ngForm" (ngSubmit)="onSubmit()">
                     <label for="email">Email:</label>
                     <input type="email" #emailLogin="ngModel" name="emailLogin" [(ngModel)]="user.email" class="form-control" required>
@@ -72,31 +71,53 @@
                             {{errorMessage}}
                         </div>
                     </div>
-                    <input type="submit" value="Login" class="btn btn-primary">
-                </form>
-                <h3>Regístrate</h3>
-                <form action="" #registerForm="ngForm" (ngSubmit)="onSubmitRegister()">
-                    <label for="">Nombre:</label>
-                    <input type="text" #name="ngModel" name="name" [(ngModel)]="user_register.name" class="form-control" required>
-                    <div *ngIf="!name.valid && name.touched">El nombre es requerido</div>
-                    <label for="">Apellido:</label>
-                    <input type="text" #surname="ngModel" name="surname" [(ngModel)]="user_register.surname" class="form-control" required>
-                    <div *ngIf="!surname.valid && surname.touched">El apellido es requerido</div>
-                    <label for="">Email:</label>
-                    <input type="email" #email="ngModel" name="email" [(ngModel)]="user_register.email" class="form-control" required>
-                    <div *ngIf="!email.valid && email.touched">El email es requerido</div>
-                    <label for="">Password:</label>
-                    <input type="password" #password="ngModel" name="password" [(ngModel)]="user_register.password" class="form-control" required>
-                    <div *ngIf="!password.valid && password.touched">La contraseña es obligatoria</div>
-                    <div *ngIf="alertRegister">
-                        <div class="alert alert-danger">
-                            {{alertRegister}}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input [disabled]="loginForm.form.invalid" type="submit" value="Login" class="btn btn-primary pull-right">
                         </div>
                     </div>
-                    <input type="submit" value="Registrar" class="btn btn-primary">
                 </form>
             </div>
         </div>
     </div>
 </div>
-    <!-- termina modal -->
+<!-- termina modal login-->
+<!-- Modal registro-->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="registerModalLabel">Regístrate</h4>
+                </div>
+                <div class="modal-body">
+                    <!--<a href="/inicio-sesion/index.php" class="btn btn-primary">register</a>-->
+                    <form action="" #registerForm="ngForm" (ngSubmit)="onSubmitRegister()">
+                        <label for="">Nombre:</label>
+                        <input type="text" #name="ngModel" name="name" [(ngModel)]="user_register.name" class="form-control" required>
+                        <div *ngIf="!name.valid && name.touched">El nombre es requerido</div>
+                        <label for="">Apellido:</label>
+                        <input type="text" #surname="ngModel" name="surname" [(ngModel)]="user_register.surname" class="form-control" required>
+                        <div *ngIf="!surname.valid && surname.touched">El apellido es requerido</div>
+                        <label for="">Email:</label>
+                        <input type="email" #email="ngModel" name="email" [(ngModel)]="user_register.email" class="form-control" required>
+                        <div *ngIf="!email.valid && email.touched">El email es requerido</div>
+                        <label for="">Password:</label>
+                        <input type="password" #password="ngModel" name="password" [(ngModel)]="user_register.password" class="form-control" required>
+                        <div *ngIf="!password.valid && password.touched">La contraseña es obligatoria</div>
+                        <div *ngIf="alertRegister">
+                            <div class="alert alert-danger">
+                                {{alertRegister}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input [disabled]="registerForm.form.invalid" type="submit" value="Registrar" class="btn btn-primary pull-right">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- termina modal registro-->

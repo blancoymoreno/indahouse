@@ -20,15 +20,25 @@ function saveUser(req, res){
 
     user.name = params.name;
     user.surname = params.surname;
-    //user.mlastname = params.mlastname;
-    //user.sexo = params.sexo;
-    //user.bday = params.bday;
+    user.mlastname = params.mlastname;
+    user.sexo = params.sexo;
+    user.bday = params.bday;
     user.email = params.email;
-    //user.mobile = params.mobile;
+    user.mobile = params.mobile;
+    user.estudios= params.estudios;
+    user.region= params.region;
+    user.cuidad= params.cuidad;
+    user.avdireccion= params.avdireccion;
+    user.ndireccion= params.ndireccion;
+    user.deptodireccion= params.deptodireccion;
+    user.pagoservicio= params.pagoservicio;
+    user.ofreservicio= params.ofreservicio;
     user.role = 'ROLE_USER';
     user.image = 'null';
     user.valoracionPromedio = params.valoracionPromedio;
     user.idService = params.idService;
+    user.categoriaServicio = params.categoriaServicio;
+    user.nombreServicio = params.nombreServicio;
 
     if(params.password){
         //encriptar contraseña

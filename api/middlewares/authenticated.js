@@ -7,7 +7,6 @@ var secret = 'clave_secreta_app';
 exports.ensureAuth = function(req, res, next){
     if(!req.headers.authorization){
         console.log(req.headers.authorization);
-        console.log('mensaje debajo del headers.authorization');
         return res.status(403).send({message: 'La petición no tiene la cabecera de autenticación'});
     }
 

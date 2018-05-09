@@ -1,5 +1,5 @@
-<div *ngIf="identity">
-    <h1>{{titulo}}</h1>
+<div>
+    <h2 class="text-center">{{titulo}}</h2>
     <a [routerLink]="['/crear-categoria']" *ngIf="identity && identity.role == 'ROLE_ADMIN'" class="btn btn-default">
         Añadir Categoría
     </a>
@@ -8,24 +8,23 @@
         <li><a [routerLink]="['/categorias', next_page]">&raquo;</a></li>
     </ul>
 </div>
-
-    <ul class="categories-list" *ngIf="identity">
-        <li *ngFor="let category of categories" class="col-lg-3 category-item">
-            <div class="category-image">
-                <img src="{{ url + 'get-image-category/'+ category.image }}" alt="" style="width:100px;"> 
-            </div>
-            <div class="category-name">
-                    <a [routerLink]="['/categoria', category._id]" >
-                    {{category.name}}
-                </a>
-            </div>
-            <div class="buttons" *ngIf="identity.role == 'ROLE_ADMIN'">
-                <a [routerLink]="['/editar-categoria', category._id]" class="btn btn-warning">Editar</a>
-                <a (click)="onDeleteConfirm(category._id)" class="btn btn-danger">Borrar</a>
-            </div>
-            <div class="confirm" *ngIf="confirmado == category._id">
-                <a (click)="onDeleteCategory(category._id)" class="btn btn-danger">Sí, Borrar</a>
-                <a (click)="onCancelCategory()" class="btn btn-default">Cancelar</a>
-            </div>
-        </li>
-    </ul>
+<ul class="categories-list"><!--*ngIf="identity"-->
+    <li *ngFor="let category of categories" class="col-lg-3 category-item">
+        <div class="category-image">
+            <img src="{{ url + 'get-image-category/'+ category.image }}" alt="" style="width:100px;"> 
+        </div>
+        <div class="category-name">
+                <a [routerLink]="['/categoria', category._id]" >
+                {{category.name}}
+            </a>
+        </div>
+        <div class="buttons" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+            <a [routerLink]="['/editar-categoria', category._id]" class="btn btn-warning">Editar</a>
+            <a (click)="onDeleteConfirm(category._id)" class="btn btn-danger">Borrar</a>
+        </div>
+        <div class="confirm" *ngIf="confirmado == category._id">
+            <a (click)="onDeleteCategory(category._id)" class="btn btn-danger">Sí, Borrar</a>
+            <a (click)="onCancelCategory()" class="btn btn-default">Cancelar</a>
+        </div>
+    </li>
+</ul>

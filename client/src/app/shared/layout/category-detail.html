@@ -7,7 +7,7 @@
             <h1>{{category.name}}</h1>
             <p class="description">{{category.description}}</p>
 
-            <a *ngIf="identity.role == 'ROLE_ADMIN'" [routerLink]="['/crear-servicio', category._id]" class="btn btn-default">
+            <a *ngIf="identity && identity.role == 'ROLE_ADMIN'" [routerLink]="['/crear-servicio', category._id]" class="btn btn-default">
                 Añadir Servicio
             </a>
         </div>
@@ -30,7 +30,7 @@
                             {{service.category.name}}
                         </a>
                     </p>
-                    <div class="buttons" *ngIf="identity.role == 'ROLE_ADMIN'">
+                    <div class="buttons" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
                         <a [routerLink]="['/editar-servicio', service._id]" class="btn btn-warning">Editar</a>
                         <a (click)="onDeleteConfirm(service._id)" class="btn btn-danger">Borrar</a>
                     </div>

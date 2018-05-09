@@ -1,13 +1,13 @@
+
 <div class="service-box" *ngIf="service">
     <div class="service-head-card">
         <div class="image">
-           <img src="{{ url + 'get-image-service/'+ service.image }}" alt="">
+        <img src="{{ url + 'get-image-service/'+ service.image }}" alt="">
         </div>
         <div class="data">
             <h1>{{service.title}}</h1>
-            <p>{{service.year}}</p>
             <p>{{service.description}}</p>
-            <a href="" class="btn btn-default" *ngIf="identity.role == 'ROLE_ADMIN'">
+            <a href="" class="btn btn-default" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
                 Añadir canción
             </a>
         </div>

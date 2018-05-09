@@ -1,29 +1,44 @@
-<h1>{{titulo}}</h1>
-<div *ngIf="alertMessage">
-    <div class="alert alert-info">
-        {{alertMessage}}
+<div *ngIf="identity">
+    <h1>{{titulo}}</h1>
+    <div *ngIf="alertMessage">
+        <div class="alert alert-info">
+            {{alertMessage}}
+        </div>
     </div>
+    <form #formService="ngForm" (ngSubmit)="onSubmit()">
+        <div>
+            <select class="categories-list" *ngIf="identity">
+                <option disabled>Seleccione</option>
+                <option *ngFor="let category of categories" >
+                        {{category.name}}
+                </option>
+            </select>
+        </div>
+        <div>
+            <label>Título servicio</label>
+            <div>
+                <input type="text" #title="ngModel" name="title" [(ngModel)]="service.title" required>
+            </div>
+            <div *ngIf="!title.valid && title.touched">
+                <p>El nombre es obligatorio</p>
+            </div>
+        </div>
+        <div>
+            <label>Descripción</label>
+            <div>
+                <textarea #description="ngModel" name="description" [(ngModel)]="service.description" required></textarea>
+            </div>
+            <div *ngIf="!description.valid && description.touched">
+                <p>La descripción es obligatoria</p>
+            </div>
+        </div>
+        <div *ngIf="is_edit">
+            <div class="service_image_for_edit" *ngIf="service.image && service.image != 'null'">
+                <img src="{{url + 'get-image-service/' + service.image}}">
+            </div>
+            <label>Sube la imagen de servicio</label>
+            <input type="file" placeholder="Subir imagen..." (change)="fileChangeEvent($event)">
+        </div>
+        <input type="submit" value="{{titulo}}" [disabled]="!formService.form.valid" class="btn btn-primary">
+    </form>
 </div>
-<form #formService="ngForm" (ngSubmit)="onSubmit()">
-    <div><label>Título servicio</label>
-        <input type="text" #title="ngModel" name="title" [(ngModel)]="service.title" required>
-        <div *ngIf="!title.valid && title.touched">
-            <p>El nombre es obligatorio</p>
-        </div>
-    </div>
-    <div>
-        <label>Descripción</label>
-        <textarea #description="ngModel" name="description" [(ngModel)]="service.description" required></textarea>
-        <div *ngIf="!description.valid && description.touched">
-            <p>La descripción es obligatoria</p>
-        </div>
-    </div>
-    <div *ngIf="is_edit">
-        <div class="service_image_for_edit" *ngIf="service.image && service.image != 'null'">
-            <img src="{{url + 'get-image-service/' + service.image}}">
-        </div>
-        <label>Sube la imagen de servicio</label>
-        <input type="file" placeholder="Subir imagen..." (change)="fileChangeEvent($event)">
-    </div>
-    <input type="submit" value="{{titulo}}" [disabled]="!formService.form.valid" class="btn btn-primary">
-</form>

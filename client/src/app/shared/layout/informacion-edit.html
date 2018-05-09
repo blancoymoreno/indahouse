@@ -1,0 +1,75 @@
+<div *ngIf="identity">
+    <div *ngIf="alertMessage">
+        <div class="alert alert-info">
+            {{alertMessage}}
+        </div>
+    </div>
+    <aside class="col-md-3">
+        <configurar-perfil-menu></configurar-perfil-menu>
+    </aside>
+    <div class="col-md-9 caja-form activo" id="datos-personales">
+        <h1>{{titulo}}</h1>
+        <form #userUpdateForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row image-for-edit" *ngIf="user.image && user.image != 'null'">
+                <img src="{{url+'get-image-user/'+user.image}}" style="width: 50px;"/>
+            </div>
+            <label>Sube tu foto:</label>
+            <input type="file" placeholder="Subir imagen..." (change)= "fileChangeEvent($event)">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="checkbox" value="ofreservicio" #ofreservicio="ngModel" name="ofreservicio" [(ngModel)]="user.ofreservicio" id="ofrezcoservicio" aria-label="...">
+                        <label for="ofrezcoservicio" aria-label="ofrezcoservicio">Ofrezco mis servicios</label>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="checkbox" value="pagoservicio"  #pagoservicio="ngModel" name="pagoservicio" [(ngModel)]="user.pagoservicio" id="pagoporservicio" aria-label="...">
+                        <label for="pagoporservicio" aria-label="pagoporservicio">Pago por servicios</label>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div>
+            <div class="row" id="ofrezcoservicioSeccion" >
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="servicio">¿Qué servicio ofreces?</label>
+                        <input type="text" #nombreServicio="ngModel" name="nombreServicio" [(ngModel)]="user.nombreServicio" class="form-control texto" id="nombreServicio"  placeholder="Ingresa el servicio a domicilio que ofreces">
+                    </div>
+                </div>
+    
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="categoriaServicio">Selecciona la categoría de tu servicio</label>
+                        <select class="categories-list form-control" value="unvalor" id="categoriaServicio" #categoriaServicio="ngModel" name="categoriaServicio" [(ngModel)]="user.categoriaServicio" *ngIf="identity">
+                            <option disabled>Seleccione</option>
+                            <option *ngFor="let category of categories" >
+                                    {{category.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+              
+            </div>
+            <!--<div class="col-md-6">
+                <div class="form-group">
+                    <label for="idioma">Idioma</label>
+                    <select class="form-control" placeholder="Ingresa" aria-describedby="idioma">
+                        <option value="es">Español</option>
+                        <option value="in">Inglés</option>
+                        <option value="cr">Creol</option>
+                        <option value="fr">Francés</option>
+                        <option value="it">Italiano</option>
+                        <option value="ch">Chino mandarín</option>
+                    </select>
+                </div>
+            </div>-->
+
+            <div class="row">
+                <div class="col-xs 12">
+                    <input type="submit" value="Guardar" class="pull-right btn btn-primary"/>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+    

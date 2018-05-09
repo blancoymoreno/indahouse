@@ -14,6 +14,7 @@ import { Category } from '../models/category';
 
 export class CategoryListComponent implements OnInit {
     public titulo: string;
+    public subtitulo: string;
     public categories: Category[];
     public identity;
     public token;
@@ -27,7 +28,8 @@ export class CategoryListComponent implements OnInit {
         private _categoryService: CategoryService,
         private _userService: UserService
     ){
-        this.titulo = "Categorías";
+        this.titulo = "Categorías de servicios";
+        this.subtitulo = "Categorías de servicios";
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
@@ -53,6 +55,7 @@ export class CategoryListComponent implements OnInit {
                     this.prev_page = 1;
                 }
             }
+            //obtener categorias con token desde el servicio
             this._categoryService.getCategories(this.token, page).subscribe(
                 response =>{
                     if(!response.categories){
@@ -66,11 +69,28 @@ export class CategoryListComponent implements OnInit {
         
                     if(errorMessage != null){
                       var errorbody = JSON.parse(error._body);
-                     //this.alertMessage = errorbody.message;
                       console.log(error);
                     }
                 }
             );
+            //obtener categorias sin token, desde el servicio
+            /*this._categoryService.getCategories(page).subscribe(
+                response =>{
+                    if(!response.categories){
+                        this._router.navigate(['/']);
+                    }else{
+                        this.categories = response.categories;
+                    }
+                },
+                error => {
+                    var errorMessage = <any>error;
+        
+                    if(errorMessage != null){
+                      var errorbody = JSON.parse(error._body);
+                      console.log(error);
+                    }
+                }
+            );*/
         });
     }
     public confirmado;

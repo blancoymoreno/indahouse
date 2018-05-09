@@ -21,7 +21,12 @@ import { CategoryDetailComponent } from './components/category-detail.component'
 import { ServiceAddComponent } from './components/service-add.component';
 import { ServiceEditComponent } from './components/service-edit.component';
 import { ServiceDetailComponent } from './components/service-detail.component';
-
+import { InformacionEditComponent } from './components/informacion-edit.component';
+import { ConfigurarPerfilMenuComponent } from './components/configurar-perfil-menu.component';
+//Componentes de landing
+import { BuscarServicioComponent } from './components/landing/buscar-servicio.component';
+import { OfreceServiciosComponent } from './components/landing/ofrece-servicios.component';
+import { ComoFuncionaComponent } from './components/landing/como-funciona.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,12 @@ import { ServiceDetailComponent } from './components/service-detail.component';
     ServiceEditComponent,
     CategoryEditComponent,
     CategoryDetailComponent,
-    ServiceDetailComponent
+    ServiceDetailComponent,
+    InformacionEditComponent,
+    ConfigurarPerfilMenuComponent,
+    BuscarServicioComponent,
+    OfreceServiciosComponent,
+    ComoFuncionaComponent
   ],
   imports: [
     BrowserModule,

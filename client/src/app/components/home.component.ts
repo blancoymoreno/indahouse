@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
         private _route: ActivatedRoute,
         private _router: Router,
     ){
-        this.titulo = "Bienvenido";
+        this.titulo = "InDaHouse, la plataforma para servicios independientes a domicilio";
     }
 
     ngOnInit(){
