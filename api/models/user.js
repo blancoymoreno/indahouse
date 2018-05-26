@@ -25,7 +25,8 @@ var UserSchema = Schema({
     valoraciones: [ ],
     idService: String,
     categoriaServicio: String,
-    nombreServicio: String
+    presentacion: String,
+    service: {type: Schema.ObjectId, ref: 'Service'}
 });
 
 module.exports = mongoose.model('User', UserSchema);

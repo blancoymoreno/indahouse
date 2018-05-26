@@ -1,9 +1,12 @@
 'use strict'
-var fs = require('fs');
 var path = require('path');
+var fs = require('fs');
 var bcrypt = require('bcrypt-nodejs');
-var User = require('../models/user');
+var Service = require('../models/service');
 var jwt = require('../services/jwt');
+var Category = require('../models/category');
+var User = require('../models/user');
+
 
 function pruebas(req, res){
     res.status(200).send({
@@ -38,7 +41,8 @@ function saveUser(req, res){
     user.valoracionPromedio = params.valoracionPromedio;
     user.idService = params.idService;
     user.categoriaServicio = params.categoriaServicio;
-    user.nombreServicio = params.nombreServicio;
+    user.service = params.service;
+    user.presentacion= params.presentacion;
 
     if(params.password){
         //encriptar contraseña
@@ -157,19 +161,43 @@ function getImageFile(req, res){
     })
 }
 
-function getUser(req,res){
-    User.findOne({'_id':req.params.id}, (err,user) =>{
-        if (err) {
-            res.status(500).send(err);
-        }
-        if (user) {
-            res.status(200).send(user);
-        } else {
-            res.status(404).send("No se ha encontrado el user");
+function getUser(req, res){
+    var userId = req.params.id;
+    User.findById(userId).populate({path: 'service'}).exec((err, user)=>{
+        if(err){
+            res.status(500).send({message: 'Error en la petición'});
+        }else{
+            if(!user){
+                res.status(404).send({message: 'El usuario no existe'});
+            }else{
+                res.status(200).send({user});
+            }
         }
     });
 }
 
+function getUsers(req, res){
+    var serviceId = req.params.service;
+    if(!serviceId){
+        //sacar todas los servicios de la bd
+        var find = User.find({}).sort('title');
+    }else{
+        // sacar los usuarios de un servicio concreto de la bd
+        var find = User.find({service: serviceId}).sort('year');
+    }
+
+    find.populate({path: 'service'}).exec((err, users) => {
+        if(err){
+            res.status(500).send({message: 'error en la petición'});
+        }else{
+            if(!users){
+                res.status(404).send({message: 'no hay servicios'});
+            }else{
+                res.status(200).send({users});
+            }
+        }
+    })
+}
 
 module.exports = {
     pruebas,
@@ -178,5 +206,6 @@ module.exports = {
     updateUser,
     uploadImage,
     getImageFile,
-    getUser
+    getUser,
+    getUsers
 };

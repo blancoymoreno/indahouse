@@ -7,10 +7,37 @@
         <div class="data">
             <h1>{{service.title}}</h1>
             <p>{{service.description}}</p>
-            <a href="" class="btn btn-default" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+            <!--<a href="" class="btn btn-default" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
                 Añadir canción
-            </a>
+            </a>-->
         </div>
-
+    </div>
+    <div id="gallery-users" *ngIf="users">
+        <!--Listar los usuarios asociados al servicio-->
+        <ul class="users-list">
+            <li *ngFor="let user of users" class="col-lg-4 user-item">
+                <div class="user-image">
+                    <img src="{{url + 'get-image-user/' + user.image}}" alt="">
+                </div>
+                <div class="user-name">
+                    <p>
+                        <a [routerLink]="['/usuario', user._id]">
+                            {{user.name}}
+                        </a>
+                    </p>
+                    <p> {{user.email}}</p>
+                
+                    <!--<div class="buttons" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
+                        <a [routerLink]="['/editar-servicio', service._id]" class="btn btn-warning">Editar</a>
+                        <a (click)="onDeleteConfirm(service._id)" class="btn btn-danger">Borrar</a>
+                    </div>
+                    <div class="confirm" *ngIf="confirmado == service._id">
+                        <a (click)="onDeleteService(service._id)" class="btn btn-danger">Sí, Borrar</a>
+                        <a (click)="onCancelService()" class="btn btn-default">Cancelar</a>
+                    </div>-->
+                </div>
+            
+            </li>
+        </ul>
     </div>
 </div>

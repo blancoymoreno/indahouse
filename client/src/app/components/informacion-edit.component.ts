@@ -6,6 +6,8 @@ import { UserService } from '../services/user.service';
 import { User } from '../models/user';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../models/category';
+import { Service } from '../models/service';
+import { ServiceService } from '../services/service.service';
 
 //declaracion para usar jquery
 declare var $:any;
@@ -13,13 +15,14 @@ declare var $:any;
 @Component({
     selector: 'informacion-edit',
     templateUrl: '../shared/layout/informacion-edit.html',
-    providers: [UserService, CategoryService]
+    providers: [UserService, CategoryService, ServiceService]
 })
 
 export class InformacionEditComponent implements OnInit{
     public titulo: string;
     public categories: Category[];
-    public user:User;
+    public services: Service[];
+    public user: User;
     public identity;
     public token;
     public alertMessage;
@@ -29,7 +32,8 @@ export class InformacionEditComponent implements OnInit{
         private _route: ActivatedRoute,
         private _router: Router,
         private _userService: UserService,
-        private _categoryService: CategoryService
+        private _categoryService: CategoryService,
+        private _serviceService: ServiceService
     ){
         this.titulo = 'Información de perfil';
         this.identity = this._userService.getIdentity();
@@ -42,6 +46,7 @@ export class InformacionEditComponent implements OnInit{
     ngOnInit(){
         console.log('informacion-edit.component.ts cargado');
         this.getCategories();
+        this.getService();
         this.checkbox();
        // $.getScript('../../assets/js/main.js');
        $( document ).ready(function() {
@@ -58,7 +63,7 @@ export class InformacionEditComponent implements OnInit{
       
     }
     checkbox(){
-        if (this.user.nombreServicio){
+        if (this.user.servicio){
                $('#ofrezcoservicioSeccion').show();
             }else{
               $('#ofrezcoservicioSeccion').hide();
@@ -67,6 +72,32 @@ export class InformacionEditComponent implements OnInit{
       }
       
     getCategories(){
+        this._route.params.forEach((params: Params) =>{
+            let page = +params['page'];
+            if(!page){
+                page = 1;
+            }
+            this._categoryService.getCategories(this.token, page).subscribe(
+                response =>{
+                    if(!response.categories){
+                        this._router.navigate(['/']);
+                    }else{
+                        this.categories = response.categories;
+                    }
+                },
+                error => {
+                    var errorMessage = <any>error;
+        
+                    if(errorMessage != null){
+                      var errorbody = JSON.parse(error._body);
+                     //this.alertMessage = errorbody.message;
+                      console.log(error);
+                    }
+                }
+            );
+        });
+    }
+    getService(){
         this._route.params.forEach((params: Params) =>{
             let page = +params['page'];
             if(!page){

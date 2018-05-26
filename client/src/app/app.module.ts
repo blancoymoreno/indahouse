@@ -27,6 +27,11 @@ import { ConfigurarPerfilMenuComponent } from './components/configurar-perfil-me
 import { BuscarServicioComponent } from './components/landing/buscar-servicio.component';
 import { OfreceServiciosComponent } from './components/landing/ofrece-servicios.component';
 import { ComoFuncionaComponent } from './components/landing/como-funciona.component';
+import { PerfilDetailComponent } from './components/perfil-detail.component';
+import { MisMensajesComponent } from './components/mis-mensajes.component';
+
+//modulo custom
+import { MessagesModule } from './messages/messages.module';
 
 @NgModule({
   declarations: [
@@ -46,14 +51,17 @@ import { ComoFuncionaComponent } from './components/landing/como-funciona.compon
     ConfigurarPerfilMenuComponent,
     BuscarServicioComponent,
     OfreceServiciosComponent,
-    ComoFuncionaComponent
+    ComoFuncionaComponent,
+    PerfilDetailComponent,
+    MisMensajesComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    MessagesModule
   ],
   providers: [
     ValoracionesService,

@@ -1,0 +1,26 @@
+<div class="col-lg-10">
+    <h3>{{title}}</h3>
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        Has enviado el mensaje a {{user.name}}, míralo en <a [routerLink]="['/mis-mensajes/enviados']">tus mensajes enviados</a>
+    </div>
+    <div class="alert alert-success" *ngIf="status == 'error'">
+       No se ha podido enviar el mensaje, inténtalo más tarde <a [routerLink]="['/enviados']">tus mensajes enviados</a>
+    </div>
+    <!-- formulario envio mensajes-->
+    <form #formAdd="ngForm" (ngSubmit)="onSubmit(formAdd)">
+        <p>
+            <label for="">Para</label>
+            <select *ngIf="users" name="receiver" id="receiver" name="receiver" #receiver="ngModel" [(ngModel)]="message.receiver" class="form-control" required>
+                <option *ngFor="let user of users" value="{{user._id}}">{{user.name}}</option>
+            </select>
+        </p>
+        <p>
+            <label for="">Mensaje</label>
+            <textarea name="text" id="enviarmensaje" #text="ngModel" [(ngModel)]="message.text" class="form-control" cols="30" rows="10" required></textarea>
+            <span *ngIf="!text.valid && text.touched">
+                El mensaje es obligatorio
+            </span>
+        </p>
+        <input type="submit" value="{{title}}" class="btn btn-success">
+    </form>
+</div>

@@ -3,10 +3,7 @@
     <a [routerLink]="['/crear-categoria']" *ngIf="identity && identity.role == 'ROLE_ADMIN'" class="btn btn-default">
         Añadir Categoría
     </a>
-    <ul class="pagination pull-right">
-        <li><a [routerLink]="['/categorias', prev_page]">&laquo;</a></li>
-        <li><a [routerLink]="['/categorias', next_page]">&raquo;</a></li>
-    </ul>
+  
 </div>
 <ul class="categories-list"><!--*ngIf="identity"-->
     <li *ngFor="let category of categories" class="col-lg-3 category-item">
@@ -27,4 +24,8 @@
             <a (click)="onCancelCategory()" class="btn btn-default">Cancelar</a>
         </div>
     </li>
+</ul>
+<ul class="pagination pull-right">
+    <li *ngIf="page > 1"><a [routerLink]="['/categorias', prev_page]">&laquo;</a></li>
+    <li *ngIf="pages != page"><a [routerLink]="['/categorias', next_page]">&raquo;</a></li>
 </ul>

@@ -1,0 +1,44 @@
+<div class="col-lg-10" *ngIf="identity">
+     <h3>{{title}}</h3>
+    <!-- listado de mensajes enviados-->
+    <div >
+        <ul class="messages-list"><!--*ngIf="identity"-->
+            <li *ngFor="let message of messages" class="col-lg-6 message-item">
+                <div *ngIf="message.emitter">
+                    <div class="message-image">
+                        <img *ngIf="message.emitter.image" src="{{ url + 'get-image-user/'+ message.emitter.image }}" alt="" style="width:100px;"> 
+                        <img src="assets/user.png" class="avatar-default" *ngIf="!message.emitter.image" alt="">
+                    </div>
+                    <div class="message-emitter">
+                        <a [routerLink]="['/usuario',message.emitter._id]">
+                            {{message.emitter.name + '' + message.emitter.surname}}
+                        </a>
+                    </div>
+            
+                    <div class="message-text">
+                            <a [routerLink]="['/message', message._id]" >
+                            {{message.text}}
+                        </a>
+                    </div>
+                    <div class="message-receiver">
+                        <span>
+                            Enviado a 
+                            <a [routerLink]="['/usuario',message.receiver._id]">
+                                {{message.receiver.name + '' + message.receiver.surname}}
+                            </a>
+                        </span>
+                        <span class="date-message">
+                            {{(message.created_at | amFromUnix) | amLocale:'es' | amTimeAgo}}
+                        </span>   
+                    </div>  
+                </div>   
+            </li>
+        </ul>
+        <div>
+            <ul class="pagination pull-right">
+                <li *ngIf="page > 1"><a [routerLink]="['/mis-mensajes/enviados', prev_page]">&laquo;</a></li>
+                <li *ngIf="pages != page"><a [routerLink]="['/mis-mensajes/enviados', next_page]">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

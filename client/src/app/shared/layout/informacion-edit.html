@@ -32,8 +32,13 @@
             <div class="row" id="ofrezcoservicioSeccion" >
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="servicio">¿Qué servicio ofreces?</label>
-                        <input type="text" #nombreServicio="ngModel" name="nombreServicio" [(ngModel)]="user.nombreServicio" class="form-control texto" id="nombreServicio"  placeholder="Ingresa el servicio a domicilio que ofreces">
+                        <label for="servicio">Selecciona el servicio que ofreces</label>
+                        <select class="services-list form-control" value="unvalor" id="servicio" #servicio="ngModel" name="servicio" [(ngModel)]="user.servicio" *ngIf="identity">
+                            <option disabled>Seleccione</option>
+                            <option *ngFor="let service of services" >
+                                    {{service.title}}
+                            </option>
+                        </select>
                     </div>
                 </div>
     
@@ -49,6 +54,14 @@
                     </div>
                 </div>
               
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="presentacion">Escribe una breve presentación sobre ti</label>
+                        <textarea class="form-control" id="presentacion" cols="30" rows="10" #presentacion="ngModel" name="presentacion" [(ngModel)]="user.presentacion" *ngIf="identity"></textarea>
+                    </div>
+                </div>
             </div>
             <!--<div class="col-md-6">
                 <div class="form-group">

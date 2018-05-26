@@ -19,6 +19,9 @@ export class CategoryListComponent implements OnInit {
     public identity;
     public token;
     public url: string;
+    public pages;
+    public total;
+    public page;
     public next_page;
     public prev_page;
 
@@ -33,64 +36,58 @@ export class CategoryListComponent implements OnInit {
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
-        this.next_page = 1;
-        this.prev_page = 1;
     }
 
     ngOnInit(){
         console.log('category-list.component.ts cargado');
         //Conseguir listado de categorias
-        this.getCategories();
+        this.actualPage();
     }
-    getCategories(){
-        this._route.params.forEach((params: Params) =>{
+
+    getCategories(page){
+        //obtener categorias con token desde el servicio
+        this._categoryService.getCategories(this.token, page).subscribe(
+            response =>{
+                if(!response.categories){
+                    this._router.navigate(['/']);
+                } else{
+                    this.categories = response.categories;
+                    this.total = response.total;
+                    this.pages = response.pages;
+                    if(page > this.pages){
+                        this._router.navigate(['/categorias/1']);
+
+                    }
+                }
+            },
+            error => {
+                var errorMessage = <any>error;
+    
+                if(errorMessage != null){
+                    var errorbody = JSON.parse(error._body);
+                    console.log(error);
+                }
+            }
+        );
+    }
+    actualPage(){
+        this._route.params.subscribe(params => {
             let page = +params['page'];
+            this.page = page;
+            if(!params['page']){
+                page = 1;
+            }
             if(!page){
                 page = 1;
             }else{
                 this.next_page = page+1;
                 this.prev_page = page-1;
 
-                if(this.prev_page == 0){
+                if(this.prev_page <= 0){
                     this.prev_page = 1;
                 }
             }
-            //obtener categorias con token desde el servicio
-            this._categoryService.getCategories(this.token, page).subscribe(
-                response =>{
-                    if(!response.categories){
-                        this._router.navigate(['/']);
-                    }else{
-                        this.categories = response.categories;
-                    }
-                },
-                error => {
-                    var errorMessage = <any>error;
-        
-                    if(errorMessage != null){
-                      var errorbody = JSON.parse(error._body);
-                      console.log(error);
-                    }
-                }
-            );
-            //obtener categorias sin token, desde el servicio
-            /*this._categoryService.getCategories(page).subscribe(
-                response =>{
-                    if(!response.categories){
-                        this._router.navigate(['/']);
-                    }else{
-                        this.categories = response.categories;
-                    }
-                },
-                error => {
-                    var errorMessage = <any>error;
-        
-                    if(errorMessage != null){
-                      var errorbody = JSON.parse(error._body);
-                      console.log(error);
-                    }
-                }
-            );*/
+            this.getCategories(this.page);
         });
     }
     public confirmado;
@@ -107,7 +104,7 @@ export class CategoryListComponent implements OnInit {
                     //alert('error en el servidor');
                     console.log(response);
                 }
-                this.getCategories();
+                this.getCategories(this.page);
             },
             error => {
                 var errorMessage = <any>error;

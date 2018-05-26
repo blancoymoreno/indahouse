@@ -1,0 +1,169 @@
+<div *ngIf="identity"> 
+    <div class="col-xs-12">
+        <ul class="breadcrumb">
+            <li>
+                <a href="#">¿Buscas un servicio?</a>
+                <a href="#">/ Servicios </a>
+                <span>/ Masajes descontracturantes</span>
+            </li>
+        </ul>
+    </div>
+     <div class="col-md-2">
+        <aside class="foto-detalle-usuario">
+            <div class="foto-evaluacion" data-toggle="modal" data-target="#imagenperfil">
+                <img src="{{ url + 'get-image-user/'+ user.image }}" class="rounded" alt="imagen perfil {{user.name}}">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>{{user.bday}} años</p>
+                </div>
+                <div class="col-md-12">
+                    <p> Chileno / Soltero</p>
+                </div>
+                <div class="col-md-12">
+                    <p>Vive en {{user.cuidad}}</p>
+                </div>
+                <div class="col-md-12">
+                    <p>{{user.region}}</p>
+                </div>
+                <div class="col-md-12">
+                    <p>Idiomas: {{user.idiomaUno}}</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <div class="col-md-10">
+        <article class="evaluacion-box row no-row">
+            <div class="col-md-9">
+            <h5>
+                <h2 class="nombre-usuario"><!--{{proveedor.name}} {{proveedor.surname}}-->{{user.name}} {{user.surname}}</h2>
+            </h5>
+            <em>Masajes descontracturantes</em>
+            <p>5.000 pesos chilenos / hora</p>
+    
+            <p class="contenido-evaluacion">
+               {{user.presentacion}}
+            </p>
+            </div>
+            <div class="col-md-3">
+                <h3>Valoración Indahouser</h3>
+                <!--<div *ngIf="proveedor.valoraciones?.length > 0">
+                    <p>{{proveedor.valoracionPromedio | number: '1.1-1'}}</p>
+                    <div class="d-flex">
+                    <div *ngFor="let nota of cantNotas; let i = index">
+                        <span *ngIf="i < proveedor.valoracionPromedio" class="glyphicon glyphicon-star nota"></span>
+                        <span *ngIf="i > proveedor.valoracionPromedio" class="glyphicon glyphicon-star-empty nota"></span>
+                    </div>
+                    </div>
+                    <a href="#!" data-toggle="modal" data-target="#evaluaciones">{{proveedor.valoraciones.length}} valoraciones</a>
+                </div>
+                <div *ngIf="proveedor.valoraciones.length == 0">
+                    <p>No existen valoraciones</p>
+                </div>-->
+            </div>
+            <div class="pull-right">
+            <!--<button class="btn btn-primary">Solicitar</button>-->
+            <div class="row">
+                <div class="col-xs-12"><button class="btn btn-primary" data-toggle="modal" data-target="#solicitar">Solicitar</button></div>
+            </div>
+            <button class="btn btn-secondary" data-toggle="modal" data-target="#enviarMensaje">Enviar mensaje</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#evaluacion">Valorar</button>
+            </div>
+        </article>
+    </div>
+ </div>
+    <!--<section *ngIf="proveedor.valoraciones.length > 0">
+
+    <div class="modal fade" id="evaluaciones" tabindex="-1" role="dialog" aria-labelledby="evaluacionesLabel">
+        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="evaluacionesLabel">Valoraciones {{proveedor.name}} {{proveedor.surname}}</h4>
+            </div>
+            <div class="modal-body">
+            <div *ngFor="let valoracion of proveedor.valoraciones" class="w-100 d-flex evaluaciones p-3 mb-3">
+                <div class="d-flex flex-column w-75 pr-3">
+                <p class="m-0">
+                    <strong>Usuario :</strong> {{valoracion.user.name}} {{valoracion.user.surname}}</p>
+                <p class="m-0">
+                    <strong>Comentario:</strong> {{valoracion.comentario}}</p>
+                </div>
+                <div class="w-25 p-2 d-flex flex-column justify-content-center bg-warning align-items-center rounded">
+                <h5 class="m-0">Calificación:</h5>
+                <div class="d-flex align-items-center">
+                    <div *ngFor="let nota of cantNotas; let i = index">
+                    <span *ngIf="i < valoracion.numEvaluacion" class="glyphicon glyphicon-star nota"></span>
+                    <span *ngIf="i > valoracion.numEvaluacion" class="glyphicon glyphicon-star-empty nota"></span>
+                    </div>
+                    <h4 class="m-0 pl-3 mt-2">{{valoracion.numEvaluacion}}</h4>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    </section>-->
+    <!--<app-evaluar [proveedor]="proveedor"></app-evaluar>-->
+    <div class="modal fade" id="imagenperfil" tabindex="-1" role="dialog" aria-labelledby="imagenperfilLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <!--<div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Imagen perfil</h4>
+                </div>-->
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <img src="{{ url + 'get-image-user/'+ user.image }}" class="rounded" alt="imagen perfil {{user.name}}">
+                </div>
+                <!--<div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>-->
+            </div>
+        </div>
+    </div>
+ <div *ngIf="!identity"> 
+     <h2>Debes estar logeado para ver este perfil</h2>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="enviarMensaje" tabindex="-1" role="dialog" aria-labelledby="enviarMensajeLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="enviarMensajeLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success" *ngIf="status == 'success'">
+                        Has enviado el mensaje a {{user.name}}, míralo en <a data-dismiss="modal" [routerLink]="['/mis-mensajes/enviados']">tus mensajes enviados</a>
+                    </div>
+                    <div class="alert alert-success" *ngIf="status == 'error'">
+                        No se ha podido enviar el mensaje, inténtalo más tarde <a [routerLink]="['/enviados']">tus mensajes enviados</a>
+                    </div>
+                    <!-- formulario envio mensajes-->
+                    <form #formAdd="ngForm" (ngSubmit)="onSubmit(formAdd)">
+                            <strong>Para {{user.name}}</strong>
+                            <input value="{{user._id}}" name="receiver" #receiver="ngModel" [(ngModel)]="message.receiver" class="form-control">
+                        <p>
+                            <label for="">Mensaje</label>
+                            <textarea name="text" id="enviarmensaje" #text="ngModel" [(ngModel)]="message.text" class="form-control" cols="30" rows="10" required></textarea>
+                            <span *ngIf="!text.valid && text.touched">
+                                El mensaje es obligatorio
+                            </span>
+                        </p>
+                        <input type="submit" value="enviar" class="btn btn-success">
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -23,27 +23,20 @@ function getCategory(req, res){
     
 }
 function getAllCategories(req, res){
+    var page = 1;
     if(req.params.page){
-        var page = req.params.page;
-    }else{
-        var page = 1;
+        page = req.params.page;
     }
-    
     var itemsPerPage = 10;
 
     Category.find().sort('name').paginate(page, itemsPerPage, function(err, categories, total){
-        if(err){
-            res.status(500).send({message: 'Error en la petición.'});
-        }else{
-            if(!categories){
-                res.status(404).send({message: 'No hay servicios'});
-            }else{
-                return res.status(200).send({
-                    total_items: total,
-                    categories: categories
-                });
-            } 
-        }
+        if(err) return res.status(500).send({message: 'Error en la petición'});
+        if(!categories) return res.status(404).send({message: 'No hay mensajes'});
+        return res.status(200).send({
+            total: total,
+            pages: Math.ceil(total/itemsPerPage),
+            categories
+        });
     })
 }
 function saveCategory(req, res){

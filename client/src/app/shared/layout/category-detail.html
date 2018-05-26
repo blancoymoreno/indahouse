@@ -20,15 +20,16 @@
                     <img src="{{url + 'get-image-service/' + service.image}}" alt="">
                 </div>
                 <div class="service-name">
-                    <p>
+                    <h2>
                         <a [routerLink]="['/servicio', service._id]">
                             {{service.title}}
                         </a>
-                    </p>
+                    </h2>
                     <p>
-                        <a [routerLink]="['/categoria', service.category._id]">
-                            {{service.category.name}}
-                        </a>
+                        {{service.description}}
+                        <!--<a [routerLink]="['/categoria', service.category._id]">
+                           
+                        </a>-->
                     </p>
                     <div class="buttons" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
                         <a [routerLink]="['/editar-servicio', service._id]" class="btn btn-warning">Editar</a>

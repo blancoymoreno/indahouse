@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import { Http, Response, Headers} from '@angular/http';
+import { Http, Response, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import {GLOBAL} from './global';
+import { User } from '../models/user';
 
 @Injectable()
 export class UserService {
@@ -13,7 +14,32 @@ export class UserService {
     constructor(private _http: Http){
         this.url = GLOBAL.url;
     }
+    getServices(token, categoryId = null){
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
 
+        let options = new RequestOptions({headers:headers});
+        if(categoryId == null){
+            return this._http.get(this.url+'services', options)
+            .map(res => res.json());
+        }else{
+            return this._http.get(this.url+'services/'+ categoryId, options)
+            .map(res => res.json());
+        }
+       
+    }
+    getService(token, id: string){
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+
+        let options = new RequestOptions({headers:headers});
+        return this._http.get(this.url+'service/'+id, options)
+                    .map(res => res.json());
+    }
     signup(user_to_login, gethash = null){
         if(gethash != null){
             user_to_login.gethash = gethash;
@@ -62,4 +88,30 @@ export class UserService {
             params, {headers:headers})
                         .map(res => res.json());
     }
+    getUsers(token, serviceId = null){
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+
+        let options = new RequestOptions({headers:headers});
+        if(serviceId == null){
+            return this._http.get(this.url+'users', options)
+            .map(res => res.json());
+        }else{
+            return this._http.get(this.url+'users/'+ serviceId, options)
+            .map(res => res.json());
+        }
+       
+    }
+    getUser(token, id: string){
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+        let options = new RequestOptions({headers:headers});
+        return this._http.get(this.url+'user/'+ id, options)
+            .map(res => res.json());
+    }
+    
 } 

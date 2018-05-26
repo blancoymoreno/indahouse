@@ -4,7 +4,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { PerfilComponent } from './perfil/perfil.component';
 // import usuario
 import { UserEditComponent } from './components/user-edit.component';
+import { PerfilDetailComponent } from './components/perfil-detail.component';
 import { InformacionEditComponent } from './components/informacion-edit.component';
+import { MisMensajesComponent } from './components/mis-mensajes.component';
 
 //import categorias
 import { CategoryListComponent } from './components/category-list.component';
@@ -29,7 +31,8 @@ import { ComoFuncionaComponent } from './components/landing/como-funciona.compon
 
 
 const appRoutes: Routes = [
-  {path: 'perfil/:idUser', component: PerfilComponent},
+  //{path: 'usuario/:idUser', component: PerfilComponent},
+  {path: 'usuario/:id', component: PerfilDetailComponent},
   {path: 'categorias/:page', component: CategoryListComponent},
   {path: 'crear-categoria', component: CategoryAddComponent},
   {path: 'editar-categoria/:id', component: CategoryEditComponent},
@@ -38,6 +41,7 @@ const appRoutes: Routes = [
   {path: 'editar-servicio/:id', component: ServiceEditComponent},
   {path: '', component: HomeComponent},
   {path: 'mis-datos', component: UserEditComponent},
+  {path: 'mis-mensajes', component: MisMensajesComponent},
   {path: 'informacion-perfil', component: InformacionEditComponent},
   {path: 'informacion-perfil', component: UserEditComponent},
   {path: 'imagen-perfil', component: UserEditComponent},

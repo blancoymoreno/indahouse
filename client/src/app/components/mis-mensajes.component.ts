@@ -6,20 +6,25 @@ import { UserService } from '../services/user.service';
 import { ServiceService } from '../services/service.service';
 import { Service } from '../models/service';
 import { User } from '../models/user';
+declare var $:any;
 
 @Component({
-    selector: 'service-detail',
-    templateUrl: '../shared/layout/service-detail.html',
+    selector: 'mis-mensajes',
+    templateUrl: '../shared/layout/mis-mensajes.html',
     providers: [UserService, ServiceService]
 })
 
-export class ServiceDetailComponent implements OnInit {
+export class MisMensajesComponent implements OnInit {
+    public titulo: string;
+    public user: User;
     public service: Service;
     public users: User[];
     public identity;
     public token;
     public url: string;
     public alertMessage;
+    public user_register: User;
+    public errorMessage;
 
     constructor(
         private _route: ActivatedRoute,
@@ -27,34 +32,36 @@ export class ServiceDetailComponent implements OnInit {
         private _userService: UserService,
         private _serviceService: ServiceService,
     ){
+        this.titulo = 'Mis mensajes';
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
+        this.user = this.identity;
         this.url = GLOBAL.url;
     }
 
     ngOnInit(){
-        console.log('service-detail.component.ts cargado');
+        console.log('mis-mensajes.component.ts cargado');
         //sacar servicio de la bbdd
-        this.getService();
+        //this.getUser();
     }
     
-    getService(){
+    getUser(){
         this._route.params.forEach((params: Params) => {
             let id = params['id'];
-            this._serviceService.getService(this.token, id).subscribe(
+            this._userService.getUser(this.token, id).subscribe(
                 response =>{
-                    if(!response.service){
+                    if(!response.user){
                         this._router.navigate(['/']);
                     }else{
-                        this.service = response.service;
-                        console.log(this.service);
-                        console.log(response.service);
+                        this.user = response.user;
+                        console.log(this.user);
+                        console.log(response.user);
 
-                        //sacar los usuarios asociados al servicio
-                        this._userService.getUsers(this.token, response.service._id).subscribe(
+                        //sacar los servicios asociados al usuario
+                        this._serviceService.getServices(this.token, response.user._id).subscribe(
                             response => {
-                               if(!response.users){
-                                    this.alertMessage = 'Este servicio no tiene usuarios';
+                               if(!response.services){
+                                    this.alertMessage = 'Este usuario no tiene servicios';
                                }else{
                                     this.users = response.users;
                                }

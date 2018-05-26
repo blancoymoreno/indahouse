@@ -20,6 +20,9 @@ export class User {
         public role: string,
         public image: string,
         public categoriaServicio: string,
-        public nombreServicio: string
+        public presentacion: string,
+        public valoracionPromedio: Number,
+        public valoraciones: [ any ],
+        public servicio: string
     ){}
 }

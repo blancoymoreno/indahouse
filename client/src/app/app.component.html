@@ -29,7 +29,7 @@
                 <li role="presentation"[routerLinkActive]="['active']"><a [routerLink]="['/categorias', 1]" >Mural</a></li>
                 <li role="presentation" [routerLinkActive]="['active']"><a href="tus-solicitudes.php">Mis solicitudes</a><span class="solicitudes-icon">1</span></li>
                 <li role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['/mis-evaluaciones']">Mis evaluaciones</a><span class="solicitudes-icon">1</span></li>
-                <li role="presentation" [routerLinkActive]="['active']"><a href="mensajes.php">Mensajes</a><span class="mensajes-icon">1</span></li>
+                <li role="presentation" [routerLinkActive]="['active']"><a [routerLink]="['/mis-mensajes']">Mensajes</a><span class="mensajes-icon">1</span></li>
                 <div class="dropdown usuario-menu">
                   <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="imagen-perfil-menu"><img src="{{url + 'get-image-user/'+ identity.image}}" alt="foto perfil"></span>

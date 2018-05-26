@@ -715,3 +715,6 @@ a {
 .home-servicios-seccion .pagination {
     display: none;
 }
+img {
+    max-width: 100%;
+}

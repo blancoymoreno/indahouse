@@ -36,7 +36,7 @@ export class CategoryDetailComponent implements OnInit {
     }
 
     ngOnInit(){
-        console.log('category-edit.component.ts cargado');
+        console.log('category-detail.component.ts cargado');
         //llamar al método del api para sacar una categoría en base a su id getCategory
         this.getCategory();
     }

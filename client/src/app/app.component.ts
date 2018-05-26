@@ -28,8 +28,8 @@ export class AppComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router
   ){
-  this.user = new User('','','','','','','', '', '','','','', '', '','','','', 'ROLE_USER', '','', '');
-  this.user_register = new User('','','','','','','','','','', '', '','','','', '', '', 'ROLE_USER', '','', '');
+  this.user = new User('','','','','','','', '', '','','','', '', '','','','', 'ROLE_USER','', '', '',0,[''], '');
+  this.user_register = new User('','','','','','','','','','', '', '','','','', '', '', 'ROLE_USER', '','','', 0, [''], '');
   this.url = GLOBAL.url;
   }
   public onSubmit() {
@@ -107,7 +107,7 @@ export class AppComponent implements OnInit {
           this.alertRegister = "Error al registrarse";
         }else{
           this.alertRegister = "El registro se ha realizado correctamente, ahora puedes logear con" + this.user_register.email;
-          this.user_register = new User('','','','','', '', '', '', '', '', '', '','','','', '','', 'ROLE_USER', '','', '');
+          this.user_register = new User('','','','','', '', '', '', '', '', '', '','','','', '','', 'ROLE_USER', '','','', 0, [''], '');
         }
       },
       error => {

@@ -1,11 +1,10 @@
 'use strict'
-
 var path = require('path');
 var fs = require('fs');
 var mongoosePaginate = require('mongoose-pagination');
-
 var Service = require('../models/service');
 var Category = require('../models/category');
+var User = require('../models/user');
 
 function getService(req, res){
     var serviceId = req.params.id;
