@@ -28,6 +28,8 @@ export class PerfilDetailComponent implements OnInit {
     public alertMessage;
     public user_register: User;
     public errorMessage;
+    states: any = [{value:0, title: 'Mac'}, {value:1, title:'Windows'}, {value: 2, title: 'Linux'}];
+    selectedState: number = 2;
 
     constructor(
         private _route: ActivatedRoute,
@@ -42,6 +44,7 @@ export class PerfilDetailComponent implements OnInit {
         this.user = this.identity;
         this.url = GLOBAL.url;
         this.message = new Message('','','','',this.identity._id,'');
+
     }
 
     ngOnInit(){
@@ -78,6 +81,7 @@ export class PerfilDetailComponent implements OnInit {
     }*/
     onSubmit(form){
         console.log(this.user);
+        this.message.receiver = this.user._id;
         this._messageService.addMessage(this.token, this.message).subscribe(
             response =>{
                 if(response.message){

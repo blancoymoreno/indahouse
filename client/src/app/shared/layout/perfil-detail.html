@@ -141,7 +141,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="enviarMensajeLabel">Modal title</h4>
+                <h4 class="modal-title" id="enviarMensajeLabel">Enviar mesaje privado</h4>
             </div>
             <div class="modal-body">
                 <div class="alert alert-success" *ngIf="status == 'success'">
@@ -152,9 +152,15 @@
                     </div>
                     <!-- formulario envio mensajes-->
                     <form #formAdd="ngForm" (ngSubmit)="onSubmit(formAdd)">
-                            <strong>Para {{user.name}}</strong>
-                            <input value="{{user._id}}" name="receiver" #receiver="ngModel" [(ngModel)]="message.receiver" class="form-control">
-                        <p>
+                            Para: <strong>{{user.name}}</strong>
+                            <!--<input value="{{user._id}}" name="receiver" #receiver="ngModel" [(ngModel)]="message.receiver" class="form-control">-->
+                            <!--<select name="receiver" #receiver="ngModel" [(ngModel)]="message.receiver" class="form-control">
+                                <option value="{{user._id}}">
+                                        {{user.name}}
+                                </option>
+                            </select>-->
+                            <input [(ngModel)]="message.receiver" name="receiver" #receiver="ngModel" type="hidden">
+                            <p>
                             <label for="">Mensaje</label>
                             <textarea name="text" id="enviarmensaje" #text="ngModel" [(ngModel)]="message.text" class="form-control" cols="30" rows="10" required></textarea>
                             <span *ngIf="!text.valid && text.touched">
